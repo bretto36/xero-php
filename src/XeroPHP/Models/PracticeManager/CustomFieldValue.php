@@ -4,50 +4,17 @@ namespace XeroPHP\Models\PracticeManager;
 
 use XeroPHP\Remote;
 
+/**
+ * @property string ID
+ * @property string Name
+ * @property string Date
+ * @property string Number
+ * @property string Decimal
+ * @property bool Boolean
+ * @property bool Text
+ */
 class CustomFieldValue extends Remote\Model
 {
-    /**
-     * ID of Custom Field
-     *
-     * @property string ID
-     */
-
-    /**
-     * Name of Custom Field
-     *
-     * @property string Name
-     */
-
-    /**
-     * Date Value - Only present when the Custom Field is this Type
-     *
-     * @property string Date
-     */
-
-    /**
-     * Number Value - Only present when the Custom Field is this Type Url
-     *
-     * @property string Number
-     */
-
-    /**
-     * Decimal Value - Only present when the Custom Field is this Type
-     *
-     * @property string Decimal
-     */
-
-    /**
-     * Boolean Value - Only present when the Custom Field is this Type
-     *
-     * @property bool Boolean
-     */
-
-    /**
-     * Text Value - Only present when the Custom Field is this Type
-     *
-     * @property bool Text
-     */
-
     /**
      * @var mixed
      */
@@ -146,7 +113,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param int $value
+     * @param  int  $value
      *
      * @return self
      */
@@ -167,7 +134,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -188,7 +155,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param  \DateTimeInterface  $value
      *
      * @return self
      */
@@ -209,7 +176,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param int $value
+     * @param  int  $value
      *
      * @return self
      */
@@ -230,7 +197,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -251,7 +218,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return self
      */
@@ -272,7 +239,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */

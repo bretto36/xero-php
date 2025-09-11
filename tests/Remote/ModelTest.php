@@ -6,11 +6,12 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 use XeroPHP\Application;
 use XeroPHP\Remote\Model;
 use XeroPHP\Tests\Remote\Model\ModelWithCollection;
 
-class ModelTest extends \PHPUnit_Framework_TestCase
+class ModelTest extends TestCase
 {
     public function testAccessorMethods()
     {
@@ -199,7 +200,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         $app->setTransport($client);
 
         $models = $app->load(\XeroPHP\Models\PracticeManager\Client::class)->setParameter('detailed', true)
-                      ->setParameter('modifiedsince', date('Y-m-d\TH:i:s'))->execute();
+            ->setParameter('modifiedsince', date('Y-m-d\TH:i:s'))->execute();
 
         /** @var \XeroPHP\Models\PracticeManager\Client $model */
         $model = $models->first();
@@ -209,7 +210,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         foreach ($model->getContacts() as $contact) {
             $this->assertEquals(220, $contact->getID());
-            $this->assertTrue($contact->getIsPrimary());
+            $this->assertEquals($contact->getIsPrimary(), 'Yes');
             $this->assertEquals('Samantha Benecke', $contact->getName());
         }
 
@@ -499,7 +500,7 @@ class SimpleModel extends Model
     }
 
     /**
-     * @param mixed $test
+     * @param  mixed  $test
      */
     public function setTest($test)
     {

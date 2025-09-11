@@ -2,102 +2,26 @@
 
 namespace XeroPHP\Models\PracticeManager;
 
-use XeroPHP\Models\PracticeManager\Client\AccountManager;
-use XeroPHP\Models\PracticeManager\Client\BillingClient;
-use XeroPHP\Models\PracticeManager\Client\Contact;
-use XeroPHP\Models\PracticeManager\Client\Group;
-use XeroPHP\Models\PracticeManager\Client\JobManager;
-use XeroPHP\Models\PracticeManager\Client\Note;
-use XeroPHP\Models\PracticeManager\Client\Relationship;
-use XeroPHP\Models\PracticeManager\Client\Type;
 use XeroPHP\Remote;
 
+/**
+ * @property string ID
+ * @property string Name
+ * @property string Type
+ * @property string LinkUrl
+ * @property string Options
+ * @property bool UseClient
+ * @property bool UseContact
+ * @property bool UseSupplier
+ * @property bool UseJob
+ * @property bool UseLead
+ * @property bool UseJobTask
+ * @property bool UseJobCost
+ * @property bool UseJobTime
+ * @property string ValueElement
+ */
 class CustomField extends Remote\Model
 {
-    /**
-     * Xero identifier.
-     *
-     * @property string ID
-     */
-
-    /**
-     * Name of Custom Field
-     *
-     * @property string Name
-     */
-
-    /**
-     * Type of Custom Field
-     *
-     * @property string Type
-     */
-
-    /**
-     * Link Url
-     *
-     * @property string LinkUrl
-     */
-
-    /**
-     * Custom Field Options for Dropdown lists
-     *
-     * @property string Options
-     */
-
-    /**
-     * In Use for Clients
-     *
-     * @property bool UseClient
-     */
-
-    /**
-     * In Use for Client Contacts
-     *
-     * @property bool UseContact
-     */
-
-    /**
-     * In Use for Suppliers
-     *
-     * @property bool UseSupplier
-     */
-
-    /**
-     * In Use for Jobs
-     *
-     * @property bool UseJob
-     */
-
-    /**
-     * In Use for Leads
-     *
-     * @property bool UseLead
-     */
-
-    /**
-     * In Use for Job Tasks
-     *
-     * @property bool UseJobTask
-     */
-
-    /**
-     * In Use for Job Costing
-     *
-     * @property bool UseJobCost
-     */
-
-    /**
-     * In Use for Job Time
-     *
-     * @property bool UseJobTime
-     */
-
-    /**
-     * Identifies XML element for accessing the field value during GET or PUT - valid values are: Text | Decimal | Number | Boolean | Date
-     *
-     * @property string ValueElement
-     */
-
     /**
      * Get the resource uri of the class (Clients) etc.
      *
@@ -164,6 +88,7 @@ class CustomField extends Remote\Model
     public static function getProperties()
     {
         return [
+            'UUID'         => [false, self::PROPERTY_TYPE_GUID, null, false, false],
             'ID'           => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Name'         => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'Type'         => [false, self::PROPERTY_TYPE_STRING, null, false, false],
@@ -195,7 +120,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param int $value
+     * @param  int  $value
      *
      * @return CustomField
      */
@@ -208,6 +133,14 @@ class CustomField extends Remote\Model
     }
 
     /**
+     * @return int
+     */
+    public function getUUID()
+    {
+        return $this->_data['UUID'];
+    }
+
+    /**
      * @return string
      */
     public function getName()
@@ -216,7 +149,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CustomField
      */
@@ -237,7 +170,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CustomField
      */
@@ -258,7 +191,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CustomField
      */
@@ -279,7 +212,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CustomField
      */
@@ -300,7 +233,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -321,7 +254,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -342,7 +275,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -363,7 +296,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -384,7 +317,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -405,7 +338,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -426,7 +359,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -447,7 +380,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CustomField
      */
@@ -468,7 +401,7 @@ class CustomField extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CustomField
      */

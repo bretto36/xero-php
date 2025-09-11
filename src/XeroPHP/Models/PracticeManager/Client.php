@@ -14,84 +14,81 @@ use XeroPHP\Models\PracticeManager\Client\Type;
 use XeroPHP\Remote;
 use XeroPHP\Traits\PracticeManager\CustomFieldValueTrait;
 
+/**
+ * @property string ID
+ * @property string Name
+ * @property string Title
+ * @property string FirstName
+ * @property string LastName
+ * @property string OtherName
+ * @property string DateOfBirth
+ * @property string Email
+ * @property string Address
+ * @property string City
+ * @property string Region
+ * @property string PostCode
+ * @property string Country
+ * @property string PostalAddress
+ * @property string PostalCity
+ * @property string PostalRegion
+ * @property string PostalPostCode
+ * @property string PostalCountry
+ * @property string Phone
+ * @property string Fax
+ * @property string Website
+ * @property string ReferralSource
+ * @property string ExportCode
+ * @property string IsProspect
+ * @property string IsDeleted
+ * @property string IsArchived
+ * where the tax number is masked with *** except last 3 digits
+ * @property string TaxNumber
+ * @property string CompanyNumber
+ * @property string BusinessNumber
+ * @property string BranchNumber
+ * e.g. Individual, Company, Trust, etc
+ * @property string BusinessStructure
+ * @property string BalanceMonth
+ * Yes or No
+ * @property string PrepareGST
+ * Yes or No
+ * @property string GSTRegistered
+ * Monthly, 2 Monthly, 6 Monthly
+ * @property string GSTPeriod
+ * Invoice, Payment, Hybrid
+ * @property string GSTBasis
+ * Standard Option, Estimate Option, Ratio Option
+ * @property string ProvisionalTaxBasis
+ * @property string ProvisionalTaxRatio
+ * Yes or No
+ * @property string SignedTaxAuthority
+ * @property string TaxAgent
+ * With EOT, Without EOT, Unlinked
+ * @property string AgencyStatus
+ * IR3, IR3NR, IR4, IR6, IR7, IR9, PTS
+ * @property string ReturnType
+ * The following fields apply to AU clients only
+ * Yes or No
+ * @property string PrepareActivityStatement
+ * Yes or No
+ * @property string PrepareTaxReturn
+ * @property string ActiveAtoClient
+ * @property string ClientCode
+ *
+ * Related Objects
+ * @property Contact[] Contacts
+ * @property AccountManager AccountManager
+ * @property JobManager JobManager
+ * @property AutoBasOptInCriteria AutoBasOptInCriteria
+ * @property Type Type
+ * @property BillingClient BillingClient
+ * @property Note[] Notes
+ * @property Group[] Groups
+ * @property Relationship[] Relationship
+ */
 class Client extends Remote\Model
 {
     use CustomFieldValueTrait;
-
-    /**
-     * @property string ID
-     * @property string Name
-     * @property string Title
-     * @property string FirstName
-     * @property string LastName
-     * @property string OtherName
-     * @property string DateOfBirth
-     * @property string Email
-     * @property string Address
-     * @property string City
-     * @property string Region
-     * @property string PostCode
-     * @property string Country
-     * @property string PostalAddress
-     * @property string PostalCity
-     * @property string PostalRegion
-     * @property string PostalPostCode
-     * @property string PostalCountry
-     * @property string Phone
-     * @property string Fax
-     * @property string Website
-     * @property string ReferralSource
-     * @property string ExportCode
-     * @property string IsProspect
-     * @property string IsDeleted
-     * @property string IsArchived
-     * where the tax number is masked with *** except last 3 digits
-     * @property string TaxNumber
-     * @property string CompanyNumber
-     * @property string BusinessNumber
-     * @property string BranchNumber
-     * e.g. Individual, Company, Trust, etc
-     * @property string BusinessStructure
-     * @property string BalanceMonth
-     * Yes or No
-     * @property string PrepareGST
-     * Yes or No
-     * @property string GSTRegistered
-     * Monthly, 2 Monthly, 6 Monthly
-     * @property string GSTPeriod
-     * Invoice, Payment, Hybrid
-     * @property string GSTBasis
-     * Standard Option, Estimate Option, Ratio Option
-     * @property string ProvisionalTaxBasis
-     * @property string ProvisionalTaxRatio
-     * Yes or No
-     * @property string SignedTaxAuthority
-     * @property string TaxAgent
-     * With EOT, Without EOT, Unlinked
-     * @property string AgencyStatus
-     * IR3, IR3NR, IR4, IR6, IR7, IR9, PTS
-     * @property string ReturnType
-     * The following fields apply to AU clients only
-     * Yes or No
-     * @property string PrepareActivityStatement
-     * Yes or No
-     * @property string PrepareTaxReturn
-     * @property string ActiveAtoClient
-     * @property string ClientCode
-     * @property string AgencyStatus
-     * @property string AgencyStatus
-     *
-     * Related Objects
-     * @property Contact[] Contacts
-     * @property AccountManager AccountManager
-     * @property JobManager JobManager
-     * @property AutoBasOptInCriteria AutoBasOptInCriteria
-     * @property Type Type
-     * @property BillingClient BillingClient
-     * @property Note[] Notes
-     * @property Group[] Groups
-     * @property Relationship[] Relationship
-     */
 
     /**
      * Get the resource uri of the class (Clients) etc.
@@ -120,7 +117,7 @@ class Client extends Remote\Model
      */
     public static function getGUIDProperty()
     {
-        return 'ID';
+        return 'UUID';
     }
 
     /**
@@ -163,6 +160,7 @@ class Client extends Remote\Model
     public static function getProperties()
     {
         return [
+            'UUID'                     => [false, self::PROPERTY_TYPE_GUID, null, false, false],
             'ID'                       => [false, self::PROPERTY_TYPE_INT, null, false, false],
             'Name'                     => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Title'                    => [false, self::PROPERTY_TYPE_STRING, null, false, false],
@@ -209,6 +207,7 @@ class Client extends Remote\Model
             'PrepareTaxReturn'         => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
             'ActiveAtoClient'          => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
             'ClientCode'               => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'WebUrl'                   => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Contacts'                 => [false, self::PROPERTY_TYPE_OBJECT, 'PracticeManager\\Client\\Contact', true, false],
             'Notes'                    => [false, self::PROPERTY_TYPE_OBJECT, 'PracticeManager\\Client\\Note', true, false],
             'Groups'                   => [false, self::PROPERTY_TYPE_OBJECT, 'PracticeManager\\Client\\Group', true, false],
@@ -245,6 +244,14 @@ class Client extends Remote\Model
         $this->_data['ID'] = $value;
 
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUUID()
+    {
+        return $this->_data['UUID'];
     }
 
     /**
@@ -1192,6 +1199,14 @@ class Client extends Remote\Model
         $this->_data['ClientCode'] = $value;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWebUrl()
+    {
+        return $this->_data['WebUrl'];
     }
 
     /**
