@@ -4,52 +4,43 @@ namespace XeroPHP\Models\PracticeManager\Client;
 
 use XeroPHP\Remote;
 
+/**
+ * @property string Name
+ * @property string CostMarkup
+ * EG DayOfMonth or WithinDays
+ * @property string PaymentTerm
+ * @property string PaymentDay
+ */
 class Type extends Remote\Model
 {
     /**
-     * @property string Name
-     * @property string CostMarkup
-     * EG DayOfMonth or WithinDays
-     * @property string PaymentTerm
-     * @property string PaymentDay
-     */
-
-    /**
      * Get the resource uri of the class (Types) etc.
-     *
-     * @return string
      */
-    public static function getResourceURI()
+    public static function getResourceURI(): string
     {
         return '';
     }
 
     /**
      * Get the root node name.  Just the unqualified classname.
-     *
-     * @return string
      */
-    public static function getRootNodeName()
+    public static function getRootNodeName(): string
     {
         return 'Type';
     }
 
     /**
      * Get the guid property.
-     *
-     * @return string
      */
-    public static function getGUIDProperty()
+    public static function getGUIDProperty(): string
     {
         return '';
     }
 
     /**
      * Get the stem of the API (core.xro) etc.
-     *
-     * @return string|null
      */
-    public static function getAPIStem()
+    public static function getAPIStem(): ?string
     {
         return Remote\URL::API_PRACTICE_MANAGER;
     }
@@ -57,10 +48,9 @@ class Type extends Remote\Model
     /**
      * Get the supported methods.
      */
-    public static function getSupportedMethods()
+    public static function getSupportedMethods(): array
     {
-        return [
-        ];
+        return [];
     }
 
     /**
@@ -70,10 +60,8 @@ class Type extends Remote\Model
      *  [2] - PHP type
      *  [3] - Is an Array
      *  [4] - Saves directly.
-     *
-     * @return array
      */
-    public static function getProperties()
+    public static function getProperties(): array
     {
         return [
             'Name'        => [false, self::PROPERTY_TYPE_STRING, null, false, false],
@@ -83,7 +71,7 @@ class Type extends Remote\Model
         ];
     }
 
-    public static function isPageable()
+    public static function isPageable(): bool
     {
         return false;
     }
@@ -97,7 +85,7 @@ class Type extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return Type
      */

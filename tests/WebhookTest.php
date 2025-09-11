@@ -25,22 +25,18 @@ class WebhookTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException \XeroPHP\Exception
-     */
     public function testMalformedPayload()
     {
-        $payload = 'not valid json';
-        $webhook = new Webhook($this->application, $payload);
+        $this->expectException(\XeroPHP\Exception::class);
+
+        new Webhook($this->application, 'not valid json');
     }
 
-    /**
-     * @expectedException \XeroPHP\Exception
-     */
     public function testPayloadMissingKeys()
     {
-        $payload = '{}';
-        $webhook = new Webhook($this->application, $payload);
+        $this->expectException(\XeroPHP\Exception::class);
+
+        new Webhook($this->application, '{}');
     }
 
     /**

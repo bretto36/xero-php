@@ -73,7 +73,7 @@ class ModelTest extends TestCase
   <Status>OK</Status> 
   <Clients>
     <Client>
-      <ID>255</ID>
+      <UUID>255</UUID>
       <Name>XYZ Australia, NZ Business Unit</Name>
       <Title /> <!-- AU Tax Enabled only-->
       <Gender /> <!-- AU Tax Enabled only-->
@@ -105,7 +105,7 @@ class ModelTest extends TestCase
       <IsArchived>No</IsArchived>
       <IsDeleted>No</IsDeleted>
       <AccountManager>
-        <ID>2</ID>
+        <UUID>2</UUID>
         <Name>Jo Blogs</Name> 
       </AccountManager>
       <Type>
@@ -116,7 +116,7 @@ class ModelTest extends TestCase
       </Type>
       <Contacts>
         <Contact>
-          <ID>220</ID>
+          <UUID>220</UUID>
           <IsPrimary>Yes</IsPrimary>
           <Name>Samantha Benecke</Name> 
           <Salutation>Sam</Salutation> 
@@ -129,13 +129,13 @@ class ModelTest extends TestCase
       </Contacts>
       <Groups>
         <Group>
-          <ID>783949</ID>
+          <UUID>783949</UUID>
           <Name>1 Geotechnical Limited</Name>
         </Group>
       </Groups>
     </Client>
     <Client>
-      <ID>697</ID>
+      <UUID>697</UUID>
       <Name>A. Dutchess</Name> 
       <Address /> 
       <City /> 
@@ -152,7 +152,7 @@ class ModelTest extends TestCase
       <Website /> 
       <Contacts /> 
       <BillingClient>
-        <ID>12345</ID>
+        <UUID>12345</UUID>
         <Name>Billing Client</Name>
       </BillingClient>
     </Client>
@@ -163,27 +163,27 @@ class ModelTest extends TestCase
   <Status>OK</Status>
   <CustomFields>
     <CustomField>
-      <ID>1</ID>
+      <UUID>1</UUID>
       <Name>Date Field</Name>
       <Date>2010-10-11T00:00:00</Date>
     </CustomField>
     <CustomField>
-      <ID>2</ID>
+      <UUID>2</UUID>
       <Name>Number Field</Name>
       <Number>123</Number>
     </CustomField>
     <CustomField>
-      <ID>3</ID>
+      <UUID>3</UUID>
       <Name>Decimal Field</Name>
       <Decimal>123.45</Decimal>
     </CustomField>
     <CustomField>
-      <ID>4</ID>
+      <UUID>4</UUID>
       <Name>Boolean Field</Name>
       <Boolean>true</Boolean>
     </CustomField>
     <CustomField>
-      <ID>5</ID>
+      <UUID>5</UUID>
       <Name>Text Field</Name>
       <Text>some text</Text>
     </CustomField>
@@ -205,11 +205,11 @@ class ModelTest extends TestCase
         /** @var \XeroPHP\Models\PracticeManager\Client $model */
         $model = $models->first();
 
-        $this->assertEquals(255, $model->getID());
+        $this->assertEquals(255, $model->getUUID());
         $this->assertEquals('XYZ Australia, NZ Business Unit', $model->getName());
 
         foreach ($model->getContacts() as $contact) {
-            $this->assertEquals(220, $contact->getID());
+            $this->assertEquals(220, $contact->getUUID());
             $this->assertEquals($contact->getIsPrimary(), 'Yes');
             $this->assertEquals('Samantha Benecke', $contact->getName());
         }
@@ -219,27 +219,27 @@ class ModelTest extends TestCase
         $this->assertCount(5, $customFieldValues);
 
         $dateFieldValue = $customFieldValues[0];
-        $this->assertEquals(1, $dateFieldValue->getId());
+        $this->assertEquals(1, $dateFieldValue->getUUID());
         $this->assertEquals('Date Field', $dateFieldValue->getName());
         $this->assertEquals('2010-10-11 00:00:00', $dateFieldValue->getDate()->format('Y-m-d H:i:s'));
 
         $numberFieldValue = $customFieldValues[1];
-        $this->assertEquals(2, $numberFieldValue->getId());
+        $this->assertEquals(2, $numberFieldValue->getUUID());
         $this->assertEquals('Number Field', $numberFieldValue->getName());
         $this->assertEquals(123, $numberFieldValue->getNumber());
 
         $decimalFieldValue = $customFieldValues[2];
-        $this->assertEquals(3, $decimalFieldValue->getId());
+        $this->assertEquals(3, $decimalFieldValue->getUUID());
         $this->assertEquals('Decimal Field', $decimalFieldValue->getName());
         $this->assertEquals(123.45, $decimalFieldValue->getDecimal());
 
         $booleanFieldValue = $customFieldValues[3];
-        $this->assertEquals(4, $booleanFieldValue->getId());
+        $this->assertEquals(4, $booleanFieldValue->getUUID());
         $this->assertEquals('Boolean Field', $booleanFieldValue->getName());
         $this->assertEquals(true, $booleanFieldValue->getBoolean());
 
         $textFieldValue = $customFieldValues[4];
-        $this->assertEquals(5, $textFieldValue->getId());
+        $this->assertEquals(5, $textFieldValue->getUUID());
         $this->assertEquals('Text Field', $textFieldValue->getName());
         $this->assertEquals('some text', $textFieldValue->getText());
 

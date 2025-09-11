@@ -5,6 +5,7 @@ namespace XeroPHP\Models\PracticeManager;
 use XeroPHP\Remote;
 
 /**
+ * @property string UUID
  * @property string ID
  * @property string Name
  * @property string Date
@@ -22,40 +23,32 @@ class CustomFieldValue extends Remote\Model
 
     /**
      * Can't be retrieved directly. First create an entity based on the custom fields you want to get. Then call ->getCustomFieldValues
-     *
-     * @return string
      */
-    public static function getResourceURI()
+    public static function getResourceURI(): string
     {
         return '';
     }
 
     /**
      * Get the root node name.  Just the unqualified classname.
-     *
-     * @return string
      */
-    public static function getRootNodeName()
+    public static function getRootNodeName(): string
     {
         return 'CustomField';
     }
 
     /**
      * Get the guid property.
-     *
-     * @return string
      */
-    public static function getGUIDProperty()
+    public static function getGUIDProperty(): string
     {
         return '';
     }
 
     /**
      * Get the stem of the API (core.xro) etc.
-     *
-     * @return string|null
      */
-    public static function getAPIStem()
+    public static function getAPIStem(): ?string
     {
         return Remote\URL::API_PRACTICE_MANAGER;
     }
@@ -63,7 +56,7 @@ class CustomFieldValue extends Remote\Model
     /**
      * Get the supported methods.
      */
-    public static function getSupportedMethods()
+    public static function getSupportedMethods(): array
     {
         return [
             Remote\Request::METHOD_PUT,
@@ -83,12 +76,11 @@ class CustomFieldValue extends Remote\Model
      *  [2] - PHP type
      *  [3] - Is an Array
      *  [4] - Saves directly.
-     *
-     * @return array
      */
-    public static function getProperties()
+    public static function getProperties(): array
     {
         return [
+            'UUID'    => [true, self::PROPERTY_TYPE_GUID, null, false, false],
             'ID'      => [true, self::PROPERTY_TYPE_INT, null, false, false],
             'Name'    => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'Date'    => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
@@ -99,9 +91,17 @@ class CustomFieldValue extends Remote\Model
         ];
     }
 
-    public static function isPageable()
+    public static function isPageable(): bool
     {
         return false;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUUID()
+    {
+        return $this->_data['UUID'];
     }
 
     /**

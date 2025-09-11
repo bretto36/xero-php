@@ -247,7 +247,7 @@ class Client extends Remote\Model
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getUUID()
     {
