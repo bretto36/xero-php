@@ -4,7 +4,6 @@ namespace XeroPHP\Tests;
 
 use PHPUnit\Framework\TestCase;
 use XeroPHP\Application;
-use XeroPHP\Application\PrivateApplication;
 use XeroPHP\Webhook;
 use XeroPHP\Webhook\Event;
 
