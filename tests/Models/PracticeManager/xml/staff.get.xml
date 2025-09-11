@@ -1,0 +1,13 @@
+<Response api-method="Get">
+    <Status>OK</Status>
+    <Staff>
+        <UUID>f8235e1a-d383-48b7-9139-ba97ab8ca889</UUID>
+        <Name>Jo Bloggs</Name>
+        <Email>jo@bloggs.net</Email>
+        <Phone>+12123123123</Phone>
+        <Mobile>+12123123124</Mobile>
+        <Address>123 Fake Street</Address>
+        <PayrollCode>JB</PayrollCode>
+        <WebUrl>https://practicemanager.xero.com/app/staff/f8235e1a-d383-48b7-9139-ba97ab8ca889/information</WebUrl>
+    </Staff>
+</Response>

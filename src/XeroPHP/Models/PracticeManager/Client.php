@@ -92,40 +92,32 @@ class Client extends Remote\Model
 
     /**
      * Get the resource uri of the class (Clients) etc.
-     *
-     * @return string
      */
-    public static function getResourceURI()
+    public static function getResourceURI(): string
     {
         return 'client.api/list';
     }
 
     /**
      * Get the root node name.  Just the unqualified classname.
-     *
-     * @return string
      */
-    public static function getRootNodeName()
+    public static function getRootNodeName(): string
     {
         return 'Client';
     }
 
     /**
      * Get the guid property.
-     *
-     * @return string
      */
-    public static function getGUIDProperty()
+    public static function getGUIDProperty(): string
     {
         return 'UUID';
     }
 
     /**
      * Get the stem of the API (core.xro) etc.
-     *
-     * @return string|null
      */
-    public static function getAPIStem()
+    public static function getAPIStem(): ?string
     {
         return Remote\URL::API_PRACTICE_MANAGER;
     }
@@ -133,7 +125,7 @@ class Client extends Remote\Model
     /**
      * Get the supported methods.
      */
-    public static function getSupportedMethods()
+    public static function getSupportedMethods(): array
     {
         return [
             Remote\Request::METHOD_POST,
@@ -142,7 +134,7 @@ class Client extends Remote\Model
         ];
     }
 
-    public function getCustomFieldValueUri()
+    public function getCustomFieldValueUri(): string
     {
         return 'client.api/get/%s/customfield';
     }
@@ -157,7 +149,7 @@ class Client extends Remote\Model
      *
      * @return array
      */
-    public static function getProperties()
+    public static function getProperties(): array
     {
         return [
             'UUID'                     => [false, self::PROPERTY_TYPE_GUID, null, false, false],
@@ -220,7 +212,7 @@ class Client extends Remote\Model
         ];
     }
 
-    public static function isPageable()
+    public static function isPageable(): bool
     {
         return false;
     }

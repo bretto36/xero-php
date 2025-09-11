@@ -208,10 +208,8 @@ class Application
         $request = new Request($this, $url, Request::METHOD_GET);
         $request->send();
 
-        //Return the first (if any) element from the response.
+        // Return the first (if any) element from the response.
         foreach ($request->getResponse()->getElements() as $element) {
-
-            /** @var $object Remote\Model */
             $object = new $class($this);
             $object->fromStringArray($element);
 
