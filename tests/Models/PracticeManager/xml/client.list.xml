@@ -115,7 +115,7 @@
             <PostalCountry/>
             <Phone>0412345678</Phone>
             <Fax>02 5555 5559</Fax>
-            <Website>http://www.website.com</Website>
+            <Website>https://www.website.com</Website>
             <ReferralSource/>
             <ExportCode>1004</ExportCode>
             <IsProspect>No</IsProspect>

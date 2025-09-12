@@ -409,19 +409,19 @@ protected function getRetryMiddleware(int $maxRetries): callable
 
 This library will parse the response Xero returns and throw an exception when it hits one of these errors. Below is a table showing the response code and corresponding exception that is thrown:
 
-| HTTP Code | Exception |
-| --------- | ------------- |
-| 400 Bad Request | `\XeroPHP\Remote\Exception\BadRequestException` |
-| 401 Unauthorized | `\XeroPHP\Remote\Exception\UnauthorizedException` |
-| 403 Forbidden | `\XeroPHP\Remote\Exception\ForbiddenException` |
+| HTTP Code                            | Exception                                                    |
+|--------------------------------------|--------------------------------------------------------------|
+| 400 Bad Request                      | `\XeroPHP\Remote\Exception\BadRequestException`              |
+| 401 Unauthorized                     | `\XeroPHP\Remote\Exception\UnauthorizedException`            |
+| 403 Forbidden                        | `\XeroPHP\Remote\Exception\ForbiddenException`               |
 | 403 ReportPermissionMissingException | `\XeroPHP\Remote\Exception\ReportPermissionMissingException` |
-| 404 Not Found | `\XeroPHP\Remote\Exception\NotFoundException` |
-| 429 Too Many Requests | `\XeroPHP\Remote\Exception\RateLimitExceededException` |
-| 500 Internal Error | `\XeroPHP\Remote\Exception\InternalErrorException` |
-| 501 Not Implemented | `\XeroPHP\Remote\Exception\NotImplementedException` |
-| 503 Rate Limit Exceeded | `\XeroPHP\Remote\Exception\RateLimitExceededException` |
-| 503 Not Available | `\XeroPHP\Remote\Exception\NotAvailableException` |
-| 503 Organisation offline | `\XeroPHP\Remote\Exception\OrganisationOfflineException` |
+| 404 Not Found                        | `\XeroPHP\Remote\Exception\NotFoundException`                |
+| 429 Too Many Requests                | `\XeroPHP\Remote\Exception\RateLimitExceededException`       |
+| 500 Internal Error                   | `\XeroPHP\Remote\Exception\InternalErrorException`           |
+| 501 Not Implemented                  | `\XeroPHP\Remote\Exception\NotImplementedException`          |
+| 503 Rate Limit Exceeded              | `\XeroPHP\Remote\Exception\RateLimitExceededException`       |
+| 503 Not Available                    | `\XeroPHP\Remote\Exception\NotAvailableException`            |
+| 503 Organisation offline             | `\XeroPHP\Remote\Exception\OrganisationOfflineException`     |
 
 See: [Response codes and errors documentation](https://developer.xero.com/documentation/api/http-response-codes)
 

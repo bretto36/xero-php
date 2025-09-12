@@ -39,7 +39,7 @@ class ApplicationTest extends TestCase
     {
         $this->expectException(\Exception::class);
 
-        $this->instance()->setConfigOption('non_exitant_key', 'sub_key', 'value');
+        $this->instance()->setConfigOption('non_existent_key', 'sub_key', 'value');
     }
 
     public function testSetConfigOptionUpdatesConfiguration()
@@ -52,7 +52,7 @@ class ApplicationTest extends TestCase
 
         $this->assertSame(
             $expected,
-            $app->getConfigOption($key, $subkey, $expected)
+            $app->getConfigOption($key, $subkey)
         );
     }
 
