@@ -2,7 +2,9 @@
 
 namespace XeroPHP\Remote;
 
-class Collection extends \ArrayObject
+use ArrayObject;
+
+class Collection extends ArrayObject
 {
     /**
      * Holds a list of objects that hold child references to the collection.
@@ -36,9 +38,6 @@ class Collection extends \ArrayObject
     {
         if (isset($this[$index])) {
             foreach ($this->_associated_objects as $parent_property => $object) {
-                /**
-                 * @var Model
-                 */
                 $object->setDirty($parent_property);
             }
             unset($this[$index]);
@@ -65,9 +64,6 @@ class Collection extends \ArrayObject
     public function removeAll()
     {
         foreach ($this->_associated_objects as $parent_property => $object) {
-            /**
-             * @var Model
-             */
             $object->setDirty($parent_property);
         }
         $this->exchangeArray([]);

@@ -4,6 +4,7 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use finfo;
 use XeroPHP\Remote\URL;
 use XeroPHP\Application;
 use XeroPHP\Remote\Model;
@@ -98,7 +99,7 @@ class Attachment extends Model
 
         //Try to guess.  Might be questionable on non-*nix machines
         if ($mime_type === null) {
-            $finfo = new \finfo(FILEINFO_MIME_TYPE);
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
             $info = $finfo->file($file_name);
 
             if ($info !== false) {

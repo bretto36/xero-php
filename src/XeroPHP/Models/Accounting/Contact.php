@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\HistoryTrait;
 use XeroPHP\Traits\AttachmentTrait;
@@ -193,7 +194,7 @@ class Contact extends Remote\Model
     /**
      * UTC timestamp of last update to contact.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
 
     /**
@@ -975,6 +976,7 @@ class Contact extends Remote\Model
     public function addPaymentTerm(PaymentTerm $value)
     {
         $this->propertyUpdated('PaymentTerms', $value);
+        // TODO: Check if this is actually an array
         if (! isset($this->_data['PaymentTerms'])) {
             $this->_data['PaymentTerms'] = new Remote\Collection();
         }
@@ -991,6 +993,7 @@ class Contact extends Remote\Model
     public function setPaymentTerm(PaymentTerm $value)
     {
         $this->propertyUpdated('PaymentTerms', $value);
+        // TODO: Check if this is actually an array
         if (! isset($this->_data['PaymentTerms'])) {
             $this->_data['PaymentTerms'] = new Remote\Collection();
         }
@@ -1000,7 +1003,7 @@ class Contact extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {
@@ -1008,11 +1011,11 @@ class Contact extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Contact
      */
-    public function setUpdatedDateUTC(\DateTimeInterface $value)
+    public function setUpdatedDateUTC(DateTimeInterface $value)
     {
         $this->propertyUpdated('UpdatedDateUTC', $value);
         $this->_data['UpdatedDateUTC'] = $value;

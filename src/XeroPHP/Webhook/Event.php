@@ -2,9 +2,14 @@
 
 namespace XeroPHP\Webhook;
 
+use DateTime;
+use XeroPHP\Application;
+use XeroPHP\Exception;
 use XeroPHP\Remote\Exception\RequiredFieldException;
+use XeroPHP\Remote\Model;
 use XeroPHP\Remote\Request;
 use XeroPHP\Remote\URL;
+use XeroPHP\Webhook;
 
 /**
  * Represents a single event within a webhook.
@@ -12,7 +17,7 @@ use XeroPHP\Remote\URL;
 class Event
 {
     /**
-     * @var \XeroPHP\Webhook
+     * @var Webhook
      */
     private $webhook;
 
@@ -54,15 +59,15 @@ class Event
     /**
      * Validates the event payload is correctly formatted.
      *
-     * @param \XeroPHP\Webhook $webhook
-     * @param array $event event details
+     * @param  Webhook  $webhook
+     * @param  array  $event  event details
      *
-     * @throws \XeroPHP\Exception if the provided payload is malformed
+     * @throws Exception if the provided payload is malformed
      */
     public function __construct($webhook, $event)
     {
         $this->webhook = $webhook;
-        $fields = [
+        $fields        = [
             'resourceUrl',
             'resourceId',
             'eventDateUtc',
@@ -75,9 +80,9 @@ class Event
         foreach ($fields as $required) {
             if (!isset($event[$required])) {
                 throw new RequiredFieldException(
-                    get_class($this), 
-                    $required, 
-                    "The event payload was malformed; missing required field {$required}"
+                    get_class($this),
+                    $required,
+                    "The event payload was malformed; missing required field $required"
                 );
             }
 
@@ -86,7 +91,7 @@ class Event
     }
 
     /**
-     * @return \XeroPHP\Webhook
+     * @return Webhook
      */
     public function getWebhook()
     {
@@ -120,11 +125,12 @@ class Event
     /**
      * Returns the event date.
      *
-     * @return \DateTime
+     * @return DateTime
+     * @throws \Exception
      */
     public function getEventDate()
     {
-        return new \DateTime($this->eventDateUtc);
+        return new DateTime($this->eventDateUtc);
     }
 
     /**
@@ -145,6 +151,7 @@ class Event
 
     /**
      * @return string the library class to use when fetching the referenced resource
+     * @throws Exception
      */
     public function getEventClass()
     {
@@ -157,6 +164,8 @@ class Event
         if ($this->getEventCategory() === 'SUBSCRIPTION') {
             return \XeroPHP\Models\Subscription::class;
         }
+
+        throw new Exception('Unknown event class: ' . $this->getEventCategory());
     }
 
     /**
@@ -178,11 +187,11 @@ class Event
     /**
      * Fetches the resource and, if possible, loads it into it's respective model class.
      *
-     * @param \XeroPHP\Application $application an optional application instance to use to retrieve the remote resource.
+     * @param  Application  $application  an optional application instance to use to retrieve the remote resource.
      *                                          Useful if you have separate instances with different oauth tokens based on the tenant
      *
-     * @return array|\XeroPHP\Remote\Model If the event category is known, returns the model, otherwise, returns the resource as an array
-     * @throws \XeroPHP\Remote\Exception
+     * @return array|Model If the event category is known, returns the model, otherwise, returns the resource as an array
+     * @throws \XeroPHP\Remote\Exception|Exception
      */
     public function getResource($application = null)
     {
@@ -190,7 +199,7 @@ class Event
             $application = $this->getWebhook()->getApplication();
         }
 
-        $url = new URL($application, $this->getResourceUrl());
+        $url     = new URL($application, $this->getResourceUrl());
         $request = new Request($application, $url, Request::METHOD_GET);
         $request->send();
 
@@ -204,5 +213,7 @@ class Event
 
             return $model;
         }
+
+        throw new Exception('No resource found at ' . $this->getResourceUrl());
     }
 }

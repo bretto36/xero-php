@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PayrollUS;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 class PaySchedule extends Remote\Model
@@ -15,13 +16,13 @@ class PaySchedule extends Remote\Model
     /**
      * The Payment Date of the Pay Schedule.
      *
-     * @property \DateTimeInterface PaymentDate
+     * @property DateTimeInterface PaymentDate
      */
 
     /**
      * The Start Date of the Pay Schedule.
      *
-     * @property \DateTimeInterface StartDate
+     * @property DateTimeInterface StartDate
      */
 
     /**
@@ -135,7 +136,7 @@ class PaySchedule extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPaymentDate()
     {
@@ -143,11 +144,11 @@ class PaySchedule extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return PaySchedule
      */
-    public function setPaymentDate(\DateTimeInterface $value)
+    public function setPaymentDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('PaymentDate', $value);
         $this->_data['PaymentDate'] = $value;
@@ -156,7 +157,7 @@ class PaySchedule extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartDate()
     {
@@ -164,11 +165,11 @@ class PaySchedule extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return PaySchedule
      */
-    public function setStartDate(\DateTimeInterface $value)
+    public function setStartDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('StartDate', $value);
         $this->_data['StartDate'] = $value;

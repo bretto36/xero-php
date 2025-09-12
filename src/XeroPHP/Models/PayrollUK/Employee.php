@@ -1,6 +1,7 @@
 <?php
 namespace XeroPHP\Models\PayrollUK;
 
+use DateTimeInterface;
 use XeroPHP\Models\PayrollUK\Employee\Address;
 use XeroPHP\Models\PayrollUK\Employee\Employment;
 use XeroPHP\Remote;
@@ -169,7 +170,7 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDateOfBirth()
     {
@@ -177,10 +178,10 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      * @return $this
      */
-    public function setDateOfBirth(\DateTimeInterface $value)
+    public function setDateOfBirth(DateTimeInterface $value)
     {
         $this->propertyUpdated('dateOfBirth', $value);
         $this->_data[ 'dateOfBirth' ] = $value;
@@ -332,7 +333,7 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {
@@ -340,7 +341,7 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getCreatedDateUTC()
     {
@@ -348,7 +349,7 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartDate()
     {
@@ -356,7 +357,7 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEndDate()
     {

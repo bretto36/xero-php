@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PayrollAU;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 class PayRun extends Remote\Model
@@ -21,13 +22,13 @@ class PayRun extends Remote\Model
     /**
      * Period Start Date for the PayRun (YYYY-MM-DD).
      *
-     * @property \DateTimeInterface PayRunPeriodStartDate
+     * @property DateTimeInterface PayRunPeriodStartDate
      */
 
     /**
      * Period End Date for the PayRun (YYYY-MM-DD).
      *
-     * @property \DateTimeInterface PayRunPeriodEndDate
+     * @property DateTimeInterface PayRunPeriodEndDate
      */
 
     /**
@@ -42,7 +43,7 @@ class PayRun extends Remote\Model
     /**
      * Payment Date for the PayRun (YYYY-MM-DD).
      *
-     * @property \DateTimeInterface PaymentDate
+     * @property DateTimeInterface PaymentDate
      */
 
     /**
@@ -222,7 +223,7 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPayRunPeriodStartDate()
     {
@@ -230,11 +231,11 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return PayRun
      */
-    public function setPayRunPeriodStartDate(\DateTimeInterface $value)
+    public function setPayRunPeriodStartDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('PayRunPeriodStartDate', $value);
         $this->_data['PayRunPeriodStartDate'] = $value;
@@ -243,7 +244,7 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPayRunPeriodEndDate()
     {
@@ -251,11 +252,11 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return PayRun
      */
-    public function setPayRunPeriodEndDate(\DateTimeInterface $value)
+    public function setPayRunPeriodEndDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('PayRunPeriodEndDate', $value);
         $this->_data['PayRunPeriodEndDate'] = $value;
@@ -285,7 +286,7 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPaymentDate()
     {
@@ -293,11 +294,11 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return PayRun
      */
-    public function setPaymentDate(\DateTimeInterface $value)
+    public function setPaymentDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('PaymentDate', $value);
         $this->_data['PaymentDate'] = $value;

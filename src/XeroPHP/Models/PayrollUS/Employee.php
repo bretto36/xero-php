@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PayrollUS;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Models\PayrollUS\Employee\HomeAddress;
 use XeroPHP\Models\PayrollUS\Employee\PayTemplate;
@@ -29,7 +30,7 @@ class Employee extends Remote\Model
     /**
      * Date of birth of employee (YYYY-MM-DD).
      *
-     * @property \DateTimeInterface DateOfBirth
+     * @property DateTimeInterface DateOfBirth
      */
 
     /**
@@ -89,14 +90,14 @@ class Employee extends Remote\Model
     /**
      * Start date of employee (YYYY-MM-DD).
      *
-     * @property \DateTimeInterface StartDate
+     * @property DateTimeInterface StartDate
      */
 
     /**
      * Termination date of employee (YYYY-MM-DD). Note this is only returned when retrieving an individual
      * Employee with a Status of TERMINATED.
      *
-     * @property \DateTimeInterface TerminationDate
+     * @property DateTimeInterface TerminationDate
      */
 
     /**
@@ -186,7 +187,7 @@ class Employee extends Remote\Model
     /**
      * Last modified timestamp.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
 
     /**
@@ -333,7 +334,7 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDateOfBirth()
     {
@@ -341,11 +342,11 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Employee
      */
-    public function setDateOfBirth(\DateTimeInterface $value)
+    public function setDateOfBirth(DateTimeInterface $value)
     {
         $this->propertyUpdated('DateOfBirth', $value);
         $this->_data['DateOfBirth'] = $value;
@@ -543,7 +544,7 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartDate()
     {
@@ -551,11 +552,11 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Employee
      */
-    public function setStartDate(\DateTimeInterface $value)
+    public function setStartDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('StartDate', $value);
         $this->_data['StartDate'] = $value;
@@ -564,7 +565,7 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getTerminationDate()
     {
@@ -572,11 +573,11 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Employee
      */
-    public function setTerminationDate(\DateTimeInterface $value)
+    public function setTerminationDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('TerminationDate', $value);
         $this->_data['TerminationDate'] = $value;
@@ -891,7 +892,7 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {
@@ -899,11 +900,11 @@ class Employee extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Employee
      */
-    public function setUpdatedDateUTC(\DateTimeInterface $value)
+    public function setUpdatedDateUTC(DateTimeInterface $value)
     {
         $this->propertyUpdated('UpdatedDateUTC', $value);
         $this->_data['UpdatedDateUTC'] = $value;

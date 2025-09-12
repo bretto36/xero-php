@@ -12,9 +12,6 @@ trait HistoryTrait
 {
     public function addHistory(History $history)
     {
-        /**
-         * @var \XeroPHP\Remote\Model
-         */
         $uri = sprintf('%s/%s/History', $this::getResourceURI(), $this->getGUID());
 
         $url = new URL($this->_application, $uri);
@@ -30,9 +27,6 @@ trait HistoryTrait
 
     public function getHistory()
     {
-        /**
-         * @var \XeroPHP\Remote\Model
-         */
         if ($this->hasGUID() === false) {
             throw new Exception(
                 'History/Notes are only available to objects that exist remotely.'

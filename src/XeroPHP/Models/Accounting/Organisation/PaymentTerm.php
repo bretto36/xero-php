@@ -113,6 +113,7 @@ class PaymentTerm extends Remote\Model
     public function addBill(Bill $value)
     {
         $this->propertyUpdated('Bills', $value);
+        // TODO: Check if this is actually an array
         if (! isset($this->_data['Bills'])) {
             $this->_data['Bills'] = new Remote\Collection();
         }
@@ -129,6 +130,7 @@ class PaymentTerm extends Remote\Model
     public function setBill(Bill $value)
     {
         $this->propertyUpdated('Bills', $value);
+        // TODO: Check if this is actually an array
         if (!isset($this->_data['Bills'])) {
             $this->_data['Bills'] = new Remote\Collection();
         }
@@ -153,6 +155,7 @@ class PaymentTerm extends Remote\Model
     public function addSale(Sale $value)
     {
         $this->propertyUpdated('Sales', $value);
+        // TODO: Check if this is actually an array
         if (! isset($this->_data['Sales'])) {
             $this->_data['Sales'] = new Remote\Collection();
         }
@@ -169,6 +172,7 @@ class PaymentTerm extends Remote\Model
     public function setSale(Sale $value)
     {
         $this->propertyUpdated('Sales', $value);
+        // TODO: Check if this is actually an array
         if (!isset($this->_data['Sales'])) {
             $this->_data['Sales'] = new Remote\Collection();
         }

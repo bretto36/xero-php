@@ -45,7 +45,7 @@ class AssetType extends Remote\Model
 
     /**
      * All asset types that have accumulated  depreciation for any assets that use them are deemed
-     * ‘locked’ and cannot be removed.
+     * 'locked' and cannot be removed.
      *
      * @property string Locks
      */

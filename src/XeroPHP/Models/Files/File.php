@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Files;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 class File extends Remote\Model
@@ -33,13 +34,13 @@ class File extends Remote\Model
     /**
      * UTC timestamp of the file creation.
      *
-     * @property \DateTimeInterface CreatedDateUTC
+     * @property DateTimeInterface CreatedDateUTC
      */
 
     /**
      * UTC timestamp of the last modified date.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
 
     /**
@@ -222,7 +223,7 @@ class File extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getCreatedDateUTC()
     {
@@ -230,11 +231,11 @@ class File extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return File
      */
-    public function setCreatedDateUTC(\DateTimeInterface $value)
+    public function setCreatedDateUTC(DateTimeInterface $value)
     {
         $this->propertyUpdated('CreatedDateUTC', $value);
         $this->_data['CreatedDateUTC'] = $value;
@@ -243,7 +244,7 @@ class File extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {
@@ -251,11 +252,11 @@ class File extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return File
      */
-    public function setUpdatedDateUTC(\DateTimeInterface $value)
+    public function setUpdatedDateUTC(DateTimeInterface $value)
     {
         $this->propertyUpdated('UpdatedDateUTC', $value);
         $this->_data['UpdatedDateUTC'] = $value;

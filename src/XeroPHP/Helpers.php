@@ -2,6 +2,8 @@
 
 namespace XeroPHP;
 
+use Composer\InstalledVersions;
+use SimpleXMLElement;
 use XeroPHP\Models\Accounting\TrackingCategory;
 use XeroPHP\Models\PayrollAU\Payslip\TimesheetEarningsLine;
 
@@ -67,15 +69,12 @@ class Helpers
         return $xml;
     }
 
-    public static function XMLToArray(\SimpleXMLElement $sxml)
+    public static function XMLToArray(SimpleXMLElement $sxml)
     {
         $output = [];
         $singular_node_name = self::singularize($sxml->getName());
 
         foreach ($sxml->children() as $child_name => $child) {
-            /**
-             * @var \SimpleXMLElement
-             */
             if ($child->count() > 0) {
                 $node = self::XMLToArray($child);
             } else {
@@ -274,6 +273,6 @@ class Helpers
             return self::DEFAULT_VERSION;
         }
 
-        return \Composer\InstalledVersions::getPrettyVersion(self::PACKAGE_NAME);
+        return InstalledVersions::getPrettyVersion(self::PACKAGE_NAME);
     }
 }

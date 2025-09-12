@@ -169,7 +169,7 @@ class Response
     {
         if (!empty($this->elements)) {
             $field_errors = [];
-            foreach ($this->elements as $n => $element) {
+            foreach ($this->elements as $element) {
                 if (isset($element['ValidationErrors'])) {
                     $field_errors[] = $element['ValidationErrors'][0]['Message'];
                 }
@@ -340,7 +340,7 @@ class Response
                     break;
                 case 'Warnings':
                     $this->root_warnings = [];
-                    foreach ($root_child->children() as $element_index => $element) {
+                    foreach ($root_child->children() as $element) {
                         $this->root_warnings[] = Helpers::XMLToArray($element);
                     }
 
@@ -350,6 +350,7 @@ class Response
                 case 'Settings':
                 case 'Timesheet':
                 case 'Staff':
+                case 'Client':
                     // some xero endpoints are 1D so we can parse them straight away
                     $this->elements[] = Helpers::XMLToArray($root_child);
 
@@ -358,7 +359,7 @@ class Response
                 default:
                     //Happy to make the assumption that there will only be one
                     //root node with > than 2D children.
-                    foreach ($root_child->children() as $element_index => $element) {
+                    foreach ($root_child->children() as $element) {
                         $this->elements[] = Helpers::XMLToArray($element);
                     }
             }

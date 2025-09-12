@@ -1,0 +1,179 @@
+<Response api-method="List">
+    <Status>OK</Status>
+    <Clients>
+        <Client>
+            <UUID>01a8b481-b9ae-4b28-89e0-87e7162807a3</UUID>
+            <Name>Test Company</Name>
+            <Email>test@test.com</Email>
+            <Address>123 Old Town Road</Address>
+            <City>Breakofdawn</City>
+            <Region>VIC</Region>
+            <PostCode>3000</PostCode>
+            <Country>Australia</Country>
+            <PostalAddress/>
+            <PostalCity/>
+            <PostalRegion/>
+            <PostalPostCode/>
+            <PostalCountry/>
+            <Phone>0411234567</Phone>
+            <Fax/>
+            <Website/>
+            <ReferralSource/>
+            <ExportCode>1003</ExportCode>
+            <IsProspect>No</IsProspect>
+            <IsArchived>No</IsArchived>
+            <IsDeleted>No</IsDeleted>
+            <AccountManager>
+                <UUID>69dfc134-5556-4ea5-8b38-1e3d4e9ad035</UUID>
+                <Name>Account Manager</Name>
+            </AccountManager>
+            <JobManager>
+                <UUID>69dfc134-5556-4ea5-8b38-1e3d4e9ad035</UUID>
+                <Name>Job Manager</Name>
+            </JobManager>
+            <TaxNumber/>
+            <CompanyNumber>123 456 789</CompanyNumber>
+            <BusinessNumber>53 004 085 616</BusinessNumber>
+            <BranchNumber>1</BranchNumber>
+            <BusinessStructure>Trust</BusinessStructure>
+            <GSTRegistered>No</GSTRegistered>
+            <PrepareGST>No</PrepareGST>
+            <SignedTaxAuthority>No</SignedTaxAuthority>
+            <AgencyStatus>Unlinked</AgencyStatus>
+            <PrepareActivityStatement>No</PrepareActivityStatement>
+            <PrepareTaxReturn>No</PrepareTaxReturn>
+            <AutoBasOptInCriteria>
+                <Annually>No</Annually>
+                <Monthly>No</Monthly>
+                <Quarterly>No</Quarterly>
+                <Opt-Out>Yes</Opt-Out>
+            </AutoBasOptInCriteria>
+            <BankName>Mark Arnold</BankName>
+            <ActiveAtoClient>No</ActiveAtoClient>
+            <ClientCode>ABC01</ClientCode>
+            <Contacts>
+                <Contact>
+                    <UUID>9dcb1f49-1bd5-414d-8b17-d5d3971ad2b8</UUID>
+                    <Name>Contact One</Name>
+                    <Mobile/>
+                    <Email>contactone@test.com</Email>
+                    <Phone>0411111111</Phone>
+                    <Salutation>Mr Contact</Salutation>
+                    <Addressee/>
+                    <Position>Test</Position>
+                    <IsPrimary>Yes</IsPrimary>
+                    <IsDeleted>No</IsDeleted>
+                </Contact>
+                <Contact>
+                    <UUID>fd08a854-d9c8-4c99-b264-428e815ab180</UUID>
+                    <Name>Contact Two</Name>
+                    <Mobile>0411 123 123</Mobile>
+                    <Email>contacttwo@test.com</Email>
+                    <Phone/>
+                    <Salutation/>
+                    <Addressee/>
+                    <Position/>
+                    <IsPrimary>No</IsPrimary>
+                    <IsDeleted>No</IsDeleted>
+                </Contact>
+            </Contacts>
+            <Notes>
+                <Note>
+                    <Title>Payment Arrangement made</Title>
+                    <Text>Spoke to client who will pay the outstanding amounts in the next few days. </Text>
+                    <Folder/>
+                    <Date>2025-07-15T10:41:50</Date>
+                    <CreatedBy>Staff Member</CreatedBy>
+                </Note>
+            </Notes>
+            <Groups>
+                <Group>
+                    <UUID>68c6a6c2-de0f-4a06-a9e0-161c0a0ed346</UUID>
+                    <Name>Family Group</Name>
+                </Group>
+                <Group>
+                    <UUID>ccf71994-08f9-45ad-95bb-6902395c6c02</UUID>
+                    <Name>Company Group</Name>
+                </Group>
+            </Groups>
+            <Relationships />
+            <WebUrl>https://practicemanager.xero.com/Client/1111111/Detail</WebUrl>
+        </Client>
+        <Client>
+            <UUID>539d4fda-c85c-4955-ac71-e521c1e0684f</UUID>
+            <Name>Test Individual</Name>
+            <Email>individual@test.com</Email>
+            <Address/>
+            <City/>
+            <Region/>
+            <PostCode>2070</PostCode>
+            <Country>Australia</Country>
+            <PostalAddress/>
+            <PostalCity/>
+            <PostalRegion/>
+            <PostalPostCode/>
+            <PostalCountry/>
+            <Phone>0412345678</Phone>
+            <Fax>02 5555 5559</Fax>
+            <Website>http://www.website.com</Website>
+            <ReferralSource/>
+            <ExportCode>1004</ExportCode>
+            <IsProspect>No</IsProspect>
+            <IsArchived>No</IsArchived>
+            <IsDeleted>No</IsDeleted>
+            <AccountManager>
+                <UUID>69dfc134-5556-4ea5-8b38-1e3d4e9ad035</UUID>
+                <Name>Account Manager</Name>
+            </AccountManager>
+            <JobManager>
+                <UUID>79d08528-a4ff-476b-bcba-769d114724a1</UUID>
+                <Name>Job Manager</Name>
+            </JobManager>
+            <TaxNumber/>
+            <CompanyNumber/>
+            <BusinessNumber/>
+            <BranchNumber>1</BranchNumber>
+            <BusinessStructure>Company</BusinessStructure>
+            <GSTRegistered>No</GSTRegistered>
+            <PrepareGST>No</PrepareGST>
+            <SignedTaxAuthority>No</SignedTaxAuthority>
+            <AgencyStatus>Unlinked</AgencyStatus>
+            <PrepareActivityStatement>No</PrepareActivityStatement>
+            <PrepareTaxReturn>No</PrepareTaxReturn>
+            <AutoBasOptInCriteria>
+                <Annually>No</Annually>
+                <Monthly>No</Monthly>
+                <Quarterly>No</Quarterly>
+                <Opt-Out>Yes</Opt-Out>
+            </AutoBasOptInCriteria>
+            <ActiveAtoClient>No</ActiveAtoClient>
+            <Contacts>
+                <Contact>
+                    <UUID>9dcb1f49-1bd5-414d-8b17-d5d3971ad2b8</UUID>
+                    <Name>Contact Three</Name>
+                    <Mobile/>
+                    <Email>contactthree@test.com</Email>
+                    <Phone>0411111111</Phone>
+                    <Salutation>Mr Contact</Salutation>
+                    <Addressee/>
+                    <Position>Test</Position>
+                    <IsPrimary>No</IsPrimary>
+                    <IsDeleted>No</IsDeleted>
+                </Contact>
+            </Contacts>
+            <Notes />
+            <Groups>
+                <Group>
+                    <UUID>e53b4f41-f587-4c23-a95c-09c7f8eb6ed3</UUID>
+                    <Name>AAA</Name>
+                </Group>
+                <Group>
+                    <UUID>68c6a6c2-de0f-4a06-a9e0-161c0a0ed346</UUID>
+                    <Name>BBB</Name>
+                </Group>
+            </Groups>
+            <Relationships />
+            <WebUrl>https://practicemanager.xero.com/Client/1111112/Detail</WebUrl>
+        </Client>
+    </Clients>
+</Response>

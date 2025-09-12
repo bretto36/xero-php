@@ -2,11 +2,11 @@
 
 namespace XeroPHP\Models\Accounting;
 
-use XeroPHP\Remote;
-use XeroPHP\Traits\HistoryTrait;
-use XeroPHP\Traits\AttachmentTrait;
-use XeroPHP\Models\Accounting\LineItem;
+use DateTimeInterface;
 use XeroPHP\Models\Accounting\BankTransaction\BankAccount;
+use XeroPHP\Remote;
+use XeroPHP\Traits\AttachmentTrait;
+use XeroPHP\Traits\HistoryTrait;
 
 class BankTransaction extends Remote\Model
 {
@@ -46,7 +46,7 @@ class BankTransaction extends Remote\Model
     /**
      * Date of transaction – YYYY-MM-DD.
      *
-     * @property \DateTimeInterface Date
+     * @property DateTimeInterface Date
      */
 
     /**
@@ -64,7 +64,7 @@ class BankTransaction extends Remote\Model
 
     /**
      * Exchange rate to base currency when money is spent or received. e.g. 0.7500 Only used for bank
-     * transactions in non base currency. If this isn’t specified for non base currency accounts then
+     * transactions in non-base currency. If this isn’t specified for non base currency accounts then
      * either the user-defined rate (preference) or the XE.com day rate will be used. Setting currency is
      * only supported on overpayments.
      *
@@ -131,7 +131,7 @@ class BankTransaction extends Remote\Model
     /**
      * Last modified date UTC format.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
 
     /**
@@ -224,26 +224,26 @@ class BankTransaction extends Remote\Model
     public static function getProperties()
     {
         return [
-            'Type' => [true, self::PROPERTY_TYPE_ENUM, null, false, false],
-            'Contact' => [true, self::PROPERTY_TYPE_OBJECT, 'Accounting\\Contact', false, false],
-            'LineItems' => [true, self::PROPERTY_TYPE_OBJECT, 'Accounting\\LineItem', true, false],
-            'BankAccount' => [true, self::PROPERTY_TYPE_OBJECT, 'Accounting\\BankTransaction\\BankAccount', false, false],
-            'IsReconciled' => [false, self::PROPERTY_TYPE_BOOLEAN, null, false, false],
-            'Date' => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
-            'Reference' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'CurrencyCode' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'CurrencyRate' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
-            'Url' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'Status' => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
-            'LineAmountTypes' => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
-            'SubTotal' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
-            'TotalTax' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
-            'Total' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
+            'Type'              => [true, self::PROPERTY_TYPE_ENUM, null, false, false],
+            'Contact'           => [true, self::PROPERTY_TYPE_OBJECT, 'Accounting\\Contact', false, false],
+            'LineItems'         => [true, self::PROPERTY_TYPE_OBJECT, 'Accounting\\LineItem', true, false],
+            'BankAccount'       => [true, self::PROPERTY_TYPE_OBJECT, 'Accounting\\BankTransaction\\BankAccount', false, false],
+            'IsReconciled'      => [false, self::PROPERTY_TYPE_BOOLEAN, null, false, false],
+            'Date'              => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
+            'Reference'         => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'CurrencyCode'      => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'CurrencyRate'      => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
+            'Url'               => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'Status'            => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
+            'LineAmountTypes'   => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
+            'SubTotal'          => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
+            'TotalTax'          => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
+            'Total'             => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
             'BankTransactionID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'PrepaymentID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'OverpaymentID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'UpdatedDateUTC' => [false, self::PROPERTY_TYPE_TIMESTAMP, '\\DateTimeInterface', false, false],
-            'HasAttachments' => [false, self::PROPERTY_TYPE_BOOLEAN, null, false, false],
+            'PrepaymentID'      => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'OverpaymentID'     => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'UpdatedDateUTC'    => [false, self::PROPERTY_TYPE_TIMESTAMP, '\\DateTimeInterface', false, false],
+            'HasAttachments'    => [false, self::PROPERTY_TYPE_BOOLEAN, null, false, false],
         ];
     }
 
@@ -261,7 +261,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return BankTransaction
      */
@@ -282,7 +282,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param Contact $value
+     * @param  Contact  $value
      *
      * @return BankTransaction
      */
@@ -303,14 +303,14 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param LineItem $value
+     * @param  LineItem  $value
      *
      * @return BankTransaction
      */
     public function addLineItem(LineItem $value)
     {
         $this->propertyUpdated('LineItems', $value);
-        if (! isset($this->_data['LineItems'])) {
+        if (!isset($this->_data['LineItems'])) {
             $this->_data['LineItems'] = new Remote\Collection();
         }
         $this->_data['LineItems'][] = $value;
@@ -327,7 +327,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param BankAccount $value
+     * @param  BankAccount  $value
      *
      * @return BankTransaction
      */
@@ -348,7 +348,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return BankTransaction
      */
@@ -361,7 +361,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -369,11 +369,11 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param  DateTimeInterface  $value
      *
      * @return BankTransaction
      */
-    public function setDate(\DateTimeInterface $value)
+    public function setDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('Date', $value);
         $this->_data['Date'] = $value;
@@ -390,7 +390,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return BankTransaction
      */
@@ -411,7 +411,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return BankTransaction
      */
@@ -432,7 +432,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return BankTransaction
      */
@@ -453,7 +453,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return BankTransaction
      */
@@ -474,7 +474,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return BankTransaction
      */
@@ -495,7 +495,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return BankTransaction
      */
@@ -516,7 +516,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return BankTransaction
      */
@@ -537,7 +537,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return BankTransaction
      */
@@ -558,7 +558,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return BankTransaction
      */
@@ -579,7 +579,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return BankTransaction
      */
@@ -608,7 +608,7 @@ class BankTransaction extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {

@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PayrollAU;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 class PayrollCalendar extends Remote\Model
@@ -28,19 +29,19 @@ class PayrollCalendar extends Remote\Model
      * The start date of the upcoming pay period. The end date will be calculated based upon this date, and
      * the calendar type selected (YYYY-MM-DD), more details.
      *
-     * @property \DateTimeInterface StartDate
+     * @property DateTimeInterface StartDate
      */
     
     /**
      * The date the calendar was last updated
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
 
     /**
      * The date on which employees will be paid for the upcoming pay period (YYYY-MM-DD), more details.
      *
-     * @property \DateTimeInterface PaymentDate
+     * @property DateTimeInterface PaymentDate
      */
     const CALENDARTYPE_WEEKLY = 'WEEKLY';
 
@@ -197,7 +198,7 @@ class PayrollCalendar extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartDate()
     {
@@ -205,11 +206,11 @@ class PayrollCalendar extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return PayrollCalendar
      */
-    public function setStartDate(\DateTimeInterface $value)
+    public function setStartDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('StartDate', $value);
         $this->_data['StartDate'] = $value;
@@ -218,7 +219,7 @@ class PayrollCalendar extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPaymentDate()
     {
@@ -226,11 +227,11 @@ class PayrollCalendar extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return PayrollCalendar
      */
-    public function setPaymentDate(\DateTimeInterface $value)
+    public function setPaymentDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('PaymentDate', $value);
         $this->_data['PaymentDate'] = $value;

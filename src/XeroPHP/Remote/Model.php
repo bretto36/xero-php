@@ -2,6 +2,12 @@
 
 namespace XeroPHP\Remote;
 
+use ArrayAccess;
+use DateTime;
+use DateTimeInterface;
+use DateTimeZone;
+use JsonSerializable;
+use ReturnTypeWillChange;
 use XeroPHP\Helpers;
 use XeroPHP\Application;
 use XeroPHP\Remote\Exception\RequiredFieldException;
@@ -9,7 +15,7 @@ use XeroPHP\Remote\Exception\RequiredFieldException;
 /**
  * Class Model.
  */
-abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
+abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
 {
     /**
      * Keys for the meta properties array.
@@ -102,7 +108,7 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
     /**
      * Get the application.
      *
-     * @return \XeroPHP\Application
+     * @return Application
      */
     protected function getApplication()
     {
@@ -193,6 +199,7 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
      *
      * @param $input_array
      * @param $replace_data
+     * @throws \Exception
      */
     public function fromStringArray($input_array, $replace_data = false)
     {
@@ -299,13 +306,13 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
 
             case self::PROPERTY_TYPE_DATE:
                 /**
-                 * @var \DateTimeInterface
+                 * @var DateTimeInterface $value
                  */
                 return $value->format('Y-m-d');
 
             case self::PROPERTY_TYPE_TIMESTAMP:
                 /**
-                 * @var \DateTimeInterface
+                 * @var DateTimeInterface $value
                  */
                 return $value->format('c');
 
@@ -331,7 +338,8 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
      * @param $value
      * @param $php_type
      *
-     * @return bool|\DateTimeInterface|float|int|string
+     * @return bool|DateTimeInterface|float|int|string|Model
+     * @throws \Exception
      */
     public static function castFromString($type, $value, $php_type)
     {
@@ -349,9 +357,8 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
             case self::PROPERTY_TYPE_BOOLEAN:
                 return in_array(strtolower($value), ['true', '1', 'yes'], true);
 
-            /** @noinspection PhpMissingBreakStatementInspection */
             case self::PROPERTY_TYPE_TIMESTAMP:
-                $timezone = new \DateTimeZone('UTC');
+                $timezone = new DateTimeZone('UTC');
 
                 // no break
             case self::PROPERTY_TYPE_DATE:
@@ -359,7 +366,7 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
                     $value = $matches['timestamp'];
                 }
 
-                return new \DateTime($value, $timezone);
+                return new DateTime($value, $timezone);
 
             case self::PROPERTY_TYPE_OBJECT:
                 $php_type = sprintf('\\XeroPHP\\Models\\%s', $php_type);
@@ -410,8 +417,6 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
 
                 if ($check_children) {
                     if ($this->_data[$property] instanceof self) {
-                        //Keep IDEs happy
-                        /** @var self $obj */
                         $obj = $this->_data[$property];
                         $obj->validate();
                     } elseif ($this->_data[$property] instanceof Collection) {
@@ -431,9 +436,8 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
     /**
      * Shorthand save an object if it is instantiated with app context.
      *
-     * @throws Exception
-     *
      * @return Response|null
+     * @throws Exception|\XeroPHP\Exception
      */
     public function save()
     {
@@ -449,9 +453,8 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
     /**
      * Shorthand delete an object if it is instantiated with app context.
      *
-     * @throws Exception
-     *
-     * @return Response
+     * @return Model
+     * @throws Exception|\XeroPHP\Exception
      */
     public function delete()
     {
@@ -500,7 +503,7 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
             return $this->$getter();
         }
 
-        trigger_error(sprintf("Undefined property %s::$%s.\n", __CLASS__, $property));
+        throw new Exception(sprintf("Undefined property %s::$%s.\n", __CLASS__, $property));
     }
 
     /**
@@ -519,12 +522,12 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
             return $this->$setter($value);
         }
 
-        trigger_error(sprintf("Undefined property %s::$%s.\n", __CLASS__, $property));
+        throw new Exception(sprintf("Undefined property %s::$%s.\n", __CLASS__, $property));
     }
 
     protected function propertyUpdated($property, $value)
     {
-        $currentValue = isset($this->_data[$property]) ? $this->_data[$property] : null;
+        $currentValue = $this->_data[$property] ?? null;
 
         if ($currentValue !== $value) {
             //If this object can update itself, set its own dirty flag, otherwise, set its parent's.
@@ -557,7 +560,7 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
      *
      * @return array
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->toStringArray();
@@ -568,7 +571,7 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
      *
      * @return bool
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return $this->__isset($offset);
@@ -579,7 +582,7 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
      *
      * @return mixed
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->__get($offset);
@@ -591,7 +594,7 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
      *
      * @return mixed
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         return $this->__set($offset, $value);
@@ -600,7 +603,7 @@ abstract class Model implements ObjectInterface, \JsonSerializable, \ArrayAccess
     /**
      * @param mixed $offset
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->_data[$offset]);

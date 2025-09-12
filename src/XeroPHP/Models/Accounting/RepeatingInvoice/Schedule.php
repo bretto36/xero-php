@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting\RepeatingInvoice;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 class Schedule extends Remote\Model
@@ -34,19 +35,19 @@ class Schedule extends Remote\Model
      * Date the first invoice of the current version of the repeating schedule was generated (changes when
      * repeating invoice is edited).
      *
-     * @property \DateTimeInterface StartDate
+     * @property DateTimeInterface StartDate
      */
 
     /**
      * The calendar date of the next invoice in the schedule to be generated.
      *
-     * @property \DateTimeInterface NextScheduledDate
+     * @property DateTimeInterface NextScheduledDate
      */
 
     /**
      * Invoice end date – only returned if the template has an end date set.
      *
-     * @property \DateTimeInterface EndDate
+     * @property DateTimeInterface EndDate
      */
 
     /**
@@ -211,7 +212,7 @@ class Schedule extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartDate()
     {
@@ -219,11 +220,11 @@ class Schedule extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Schedule
      */
-    public function setStartDate(\DateTimeInterface $value)
+    public function setStartDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('StartDate', $value);
         $this->_data['StartDate'] = $value;
@@ -232,7 +233,7 @@ class Schedule extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getNextScheduledDate()
     {
@@ -240,11 +241,11 @@ class Schedule extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Schedule
      */
-    public function setNextScheduledDate(\DateTimeInterface $value)
+    public function setNextScheduledDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('NextScheduledDate', $value);
         $this->_data['NextScheduledDate'] = $value;
@@ -253,7 +254,7 @@ class Schedule extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEndDate()
     {
@@ -261,11 +262,11 @@ class Schedule extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Schedule
      */
-    public function setEndDate(\DateTimeInterface $value)
+    public function setEndDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('EndDate', $value);
         $this->_data['EndDate'] = $value;

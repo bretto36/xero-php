@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting\Overpayment;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Models\Accounting\Invoice;
 
@@ -23,7 +24,7 @@ class Allocation extends Remote\Model
      * the date the overpayment is applied YYYY-MM-DD (read-only). This will be the latter of the invoice
      * date and the overpayment date.
      *
-     * @property \DateTimeInterface Date
+     * @property DateTimeInterface Date
      */
 
     /**
@@ -142,7 +143,7 @@ class Allocation extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -150,11 +151,11 @@ class Allocation extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Allocation
      */
-    public function setDate(\DateTimeInterface $value)
+    public function setDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('Date', $value);
         $this->_data['Date'] = $value;

@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PracticeManager;
 
+use DateTimeInterface;
 use XeroPHP\Models\PracticeManager\Invoice\Contact;
 use XeroPHP\Models\PracticeManager\Invoice\Cost;
 use XeroPHP\Models\PracticeManager\Invoice\Job;
@@ -14,8 +15,8 @@ use XeroPHP\Remote;
  * @property string Type
  * @property string Status
  * @property string JobText
- * @property \DateTimeInterface Date
- * @property \DateTimeInterface DueDate
+ * @property DateTimeInterface Date
+ * @property DateTimeInterface DueDate
  * @property float Amount
  * @property float AmountTax
  * @property float AmountIncludingTax
@@ -239,7 +240,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -247,7 +248,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param  \DateTimeInterface  $value
+     * @param  DateTimeInterface  $value
      *
      * @return self
      */
@@ -260,7 +261,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDueDate()
     {
@@ -268,7 +269,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param  \DateTimeInterface  $value
+     * @param  DateTimeInterface  $value
      *
      * @return self
      */

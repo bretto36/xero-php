@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PayrollUK\Employee;
 
+use DateTimeInterface;
 use XeroPHP\Models\PayrollUK\Employee\Leave\Period;
 use XeroPHP\Remote;
 
@@ -22,13 +23,13 @@ class Leave extends Remote\Model
     /**
      * Start date of the leave (YYYY-MM-DD).
      *
-     * @property \DateTimeInterface StartDate
+     * @property DateTimeInterface StartDate
      */
 
     /**
      * End date of the leave (YYYY-MM-DD).
      *
-     * @property \DateTimeInterface EndDate
+     * @property DateTimeInterface EndDate
      */
 
     /**
@@ -169,7 +170,7 @@ class Leave extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartDate()
     {
@@ -177,11 +178,11 @@ class Leave extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Leave
      */
-    public function setStartDate(\DateTimeInterface $value)
+    public function setStartDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('StartDate', $value);
         $this->_data['StartDate'] = $value;
@@ -190,7 +191,7 @@ class Leave extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEndDate()
     {
@@ -198,11 +199,11 @@ class Leave extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Leave
      */
-    public function setEndDate(\DateTimeInterface $value)
+    public function setEndDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('EndDate', $value);
         $this->_data['EndDate'] = $value;

@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PracticeManager;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 /**
@@ -147,7 +148,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -155,7 +156,7 @@ class CustomFieldValue extends Remote\Model
     }
 
     /**
-     * @param  \DateTimeInterface  $value
+     * @param  DateTimeInterface  $value
      *
      * @return self
      */

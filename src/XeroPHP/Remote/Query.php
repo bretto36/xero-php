@@ -3,7 +3,9 @@
 namespace XeroPHP\Remote;
 
 use DateTime;
+use DateTimeInterface;
 use XeroPHP\Application;
+use XeroPHP\Exception;
 
 class Query
 {
@@ -11,7 +13,7 @@ class Query
 
     const ORDER_DESC = 'DESC';
 
-    /** @var \XeroPHP\Application */
+    /** @var Application */
     private $app;
 
     private $from_class;
@@ -40,28 +42,29 @@ class Query
 
     private $params;
 
-    /** @var Response|null $response  */
+    /** @var Response|null $response */
     private $response;
 
     public function __construct(Application $app)
     {
-        $this->app = $app;
-        $this->where = [];
-        $this->order = null;
-        $this->modifiedAfter = null;
-        $this->page = null;
-        $this->pageSize = null;
-        $this->offset = null;
+        $this->app             = $app;
+        $this->where           = [];
+        $this->order           = null;
+        $this->modifiedAfter   = null;
+        $this->page            = null;
+        $this->pageSize        = null;
+        $this->offset          = null;
         $this->includeArchived = false;
-        $this->createdByMyApp = false;
-        $this->params = [];
-        $this->response = null;
+        $this->createdByMyApp  = false;
+        $this->params          = [];
+        $this->response        = null;
     }
 
     /**
-     * @param string $class
+     * @param  string  $class
      *
      * @return $this
+     * @throws Exception
      */
     public function from($class)
     {
@@ -104,8 +107,8 @@ class Query
     }
 
     /**
-     * @param string $operator
-     * @param array $args
+     * @param  string  $operator
+     * @param  array  $args
      *
      * @return $this
      */
@@ -154,8 +157,8 @@ class Query
     }
 
     /**
-     * @param string $order
-     * @param string $direction
+     * @param  string  $order
+     * @param  string  $direction
      *
      * @return $this
      */
@@ -167,14 +170,14 @@ class Query
     }
 
     /**
-     * @param \DateTimeInterface|null $modifiedAfter
+     * @param  DateTimeInterface|null  $modifiedAfter
      *
      * @return $this
      */
-    public function modifiedAfter(\DateTimeInterface $modifiedAfter = null)
+    public function modifiedAfter(DateTimeInterface $modifiedAfter = null)
     {
         if ($modifiedAfter === null) {
-            $modifiedAfter = new \DateTime('@0'); // since ever
+            $modifiedAfter = new DateTime('@0'); // since ever
         }
 
         $this->modifiedAfter = $modifiedAfter->format('c');
@@ -183,7 +186,7 @@ class Query
     }
 
     /**
-     * @param DateTime $fromDate
+     * @param  DateTime  $fromDate
      *
      * @return $this
      */
@@ -195,7 +198,7 @@ class Query
     }
 
     /**
-     * @param DateTime $toDate
+     * @param  DateTime  $toDate
      *
      * @return $this
      */
@@ -207,7 +210,7 @@ class Query
     }
 
     /**
-     * @param DateTime $date
+     * @param  DateTime  $date
      *
      * @return $this
      */
@@ -219,96 +222,102 @@ class Query
     }
 
     /**
-     * @param int $page
-     *
-     * @throws Exception
+     * @param  int  $page
      *
      * @return $this
+     * @throws Exception
+     *
      */
     public function page($page = 1)
     {
-        /**
-         * @var ObjectInterface
-         */
+        /** @var ObjectInterface $from_class */
         $from_class = $this->from_class;
-        if (! $from_class::isPageable()) {
+        if (!$from_class::isPageable()) {
             throw new Exception(sprintf('%s does not support paging.', $from_class));
         }
-        $this->page = (int) $page;
+        $this->page = (int)$page;
 
         return $this;
     }
 
 
     /**
-     * @param int $pageSize
-     *
-     * @throws Exception
+     * @param  int  $pageSize
      *
      * @return $this
+     * @throws Exception
+     *
      */
     public function pageSize($pageSize = 100)
     {
-        /**
-         * @var ObjectInterface
-         */
+        /** @var ObjectInterface $from_class */
         $from_class = $this->from_class;
-        if (! $from_class::isPageable()) {
+        if (!$from_class::isPageable()) {
             throw new Exception(sprintf('%s does not support paging.', $from_class));
         }
-        $this->pageSize = (int) $pageSize;
+        $this->pageSize = (int)$pageSize;
 
         return $this;
     }
 
     /**
-     * @param int $offset
+     * @param  int  $offset
      *
      * @return $this
      */
     public function offset($offset = 0)
     {
-        $this->offset = (int) $offset;
+        $this->offset = (int)$offset;
 
         return $this;
     }
 
     public function includeArchived($includeArchived = true)
     {
-        $this->includeArchived = (bool) $includeArchived;
+        $this->includeArchived = (bool)$includeArchived;
 
         return $this;
     }
 
     public function createdByMyApp($createdByMyApp = true)
     {
-        $this->createdByMyApp = (bool) $createdByMyApp;
+        $this->createdByMyApp = (bool)$createdByMyApp;
 
         return $this;
     }
 
     public function setParameter($key, $value)
     {
-        $this->params[(string) $key] = (string) $value;
+        $this->params[(string)$key] = (string)$value;
 
         return $this;
     }
 
     /**
      * @return Collection
+     * @throws Exception
+     * @throws \XeroPHP\Remote\Exception\BadRequestException
+     * @throws \XeroPHP\Remote\Exception\ForbiddenException
+     * @throws \XeroPHP\Remote\Exception\InternalErrorException
+     * @throws \XeroPHP\Remote\Exception\NotAvailableException
+     * @throws \XeroPHP\Remote\Exception\NotFoundException
+     * @throws \XeroPHP\Remote\Exception\NotImplementedException
+     * @throws \XeroPHP\Remote\Exception\OrganisationOfflineException
+     * @throws \XeroPHP\Remote\Exception\RateLimitExceededException
+     * @throws \XeroPHP\Remote\Exception\ReportPermissionMissingException
+     * @throws \XeroPHP\Remote\Exception\UnauthorizedException
+     * @throws Exception
      */
     public function execute()
     {
-        /**
-         * @var ObjectInterface
-         */
+        /* @var ObjectInterface $from_class */
         $from_class = $this->from_class;
-        $url = new URL(
+        $url        = new URL(
             $this->app,
             $from_class::getResourceURI(),
             $from_class::getAPIStem()
         );
-        $request = new Request($this->app, $url, Request::METHOD_GET);
+        $request    = new Request($this->app, $url, Request::METHOD_GET);
 
         // Add params
         foreach ($this->params as $key => $value) {
@@ -318,7 +327,7 @@ class Query
         // Concatenate where statements
         $where = $this->getWhere();
 
-        if (! empty($where)) {
+        if (!empty($where)) {
             $request->setParameter('where', $where);
         }
 
@@ -364,12 +373,10 @@ class Query
 
         $request->send();
 
-        $elements = new Collection();
+        $elements       = new Collection();
         $this->response = $request->getResponse();
         foreach ($this->response->getElements() as $element) {
-            /**
-             * @var Model
-             */
+            /** @var Model $built_element */
             $built_element = new $from_class($this->app);
             $built_element->fromStringArray($element);
             $elements->append($built_element);

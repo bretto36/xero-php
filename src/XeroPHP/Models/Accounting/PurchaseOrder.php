@@ -2,11 +2,11 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\PDFTrait;
 use XeroPHP\Traits\HistoryTrait;
 use XeroPHP\Traits\AttachmentTrait;
-use XeroPHP\Models\Accounting\LineItem;
 
 class PurchaseOrder extends Remote\Model
 {
@@ -30,13 +30,13 @@ class PurchaseOrder extends Remote\Model
     /**
      * Date purchase order was issued – YYYY-MM-DD. Learn more.
      *
-     * @property \DateTimeInterface Date
+     * @property DateTimeInterface Date
      */
 
     /**
      * Date the goods are to be delivered – YYYY-MM-DD.
      *
-     * @property \DateTimeInterface DeliveryDate
+     * @property DateTimeInterface DeliveryDate
      */
 
     /**
@@ -111,7 +111,7 @@ class PurchaseOrder extends Remote\Model
     /**
      * The date the goods are expected to arrive.
      *
-     * @property \DateTimeInterface ExpectedArrivalDate
+     * @property DateTimeInterface ExpectedArrivalDate
      */
 
     /**
@@ -160,7 +160,7 @@ class PurchaseOrder extends Remote\Model
     /**
      * Last modified date UTC format.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
     const PURCHASE_ORDER_STATUS_DRAFT = 'DRAFT';
 
@@ -315,7 +315,7 @@ class PurchaseOrder extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -323,11 +323,11 @@ class PurchaseOrder extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return PurchaseOrder
      */
-    public function setDate(\DateTimeInterface $value)
+    public function setDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('Date', $value);
         $this->_data['Date'] = $value;
@@ -336,7 +336,7 @@ class PurchaseOrder extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDeliveryDate()
     {
@@ -344,11 +344,11 @@ class PurchaseOrder extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return PurchaseOrder
      */
-    public function setDeliveryDate(\DateTimeInterface $value)
+    public function setDeliveryDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('DeliveryDate', $value);
         $this->_data['DeliveryDate'] = $value;
@@ -588,7 +588,7 @@ class PurchaseOrder extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getExpectedArrivalDate()
     {
@@ -596,11 +596,11 @@ class PurchaseOrder extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return PurchaseOrder
      */
-    public function setExpectedArrivalDate(\DateTimeInterface $value)
+    public function setExpectedArrivalDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('ExpectedArrivalDate', $value);
         $this->_data['ExpectedArrivalDate'] = $value;
@@ -691,7 +691,7 @@ class PurchaseOrder extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {

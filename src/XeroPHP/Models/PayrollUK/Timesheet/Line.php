@@ -1,6 +1,7 @@
 <?php
 namespace XeroPHP\Models\PayrollUK\Timesheet;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\TitleCaseKeysBeforeSave;
 
@@ -114,7 +115,7 @@ class Line extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -122,10 +123,10 @@ class Line extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      * @return $this
      */
-    public function setDate(\DateTimeInterface $value)
+    public function setDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('date', $value);
         $this->_data[ 'date' ] = $value;
@@ -170,7 +171,7 @@ class Line extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {
@@ -178,7 +179,7 @@ class Line extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getCreatedDateUTC()
     {

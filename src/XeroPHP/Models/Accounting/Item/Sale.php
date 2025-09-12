@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting\Item;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 class Sale extends Remote\Model
@@ -29,7 +30,7 @@ class Sale extends Remote\Model
     /**
      * This property has been removed from the Xero API.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      *
      * @deprecated
      */
@@ -175,31 +176,6 @@ class Sale extends Remote\Model
     {
         $this->propertyUpdated('COGSAccountCode', $value);
         $this->_data['COGSAccountCode'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTimeInterface
-     *
-     * @deprecated
-     */
-    public function getUpdatedDateUTC()
-    {
-        return $this->_data['UpdatedDateUTC'];
-    }
-
-    /**
-     * @param \DateTimeInterface $value
-     *
-     * @return Sale
-     *
-     * @deprecated
-     */
-    public function setUpdatedDateUTC(\DateTimeInterface $value)
-    {
-        $this->propertyUpdated('UpdatedDateUTC', $value);
-        $this->_data['UpdatedDateUTC'] = $value;
 
         return $this;
     }

@@ -2,13 +2,14 @@
 
 namespace XeroPHP\Models\PracticeManager\Client;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 /**
  * @property string Title
  * @property string Text
  * @property string Folder
- * @property \DateTimeInterface Date
+ * @property DateTimeInterface Date
  * @property string CreatedBy
  */
 class Note extends Remote\Model
@@ -141,7 +142,7 @@ class Note extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -149,7 +150,7 @@ class Note extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Note
      */

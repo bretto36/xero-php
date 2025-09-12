@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Assets;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 class Setting extends Remote\Model
@@ -21,13 +22,13 @@ class Setting extends Remote\Model
     /**
      * The date depreciation calculations started on registered fixed assets in Xero.
      *
-     * @property \DateTimeInterface assetStartDate
+     * @property DateTimeInterface assetStartDate
      */
 
     /**
      * The last depreciation date.
      *
-     * @property \DateTimeInterface lastDepreciationDate
+     * @property DateTimeInterface lastDepreciationDate
      */
 
     /**
@@ -174,7 +175,7 @@ class Setting extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getassetStartDate()
     {
@@ -182,11 +183,11 @@ class Setting extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Setting
      */
-    public function setassetStartDate(\DateTimeInterface $value)
+    public function setassetStartDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('assetStartDate', $value);
         $this->_data['assetStartDate'] = $value;
@@ -195,7 +196,7 @@ class Setting extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getlastDepreciationDate()
     {
@@ -203,11 +204,11 @@ class Setting extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Setting
      */
-    public function setlastDepreciationDate(\DateTimeInterface $value)
+    public function setlastDepreciationDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('lastDepreciationDate', $value);
         $this->_data['lastDepreciationDate'] = $value;

@@ -25,7 +25,7 @@ class BankAccount extends Remote\Model
      */
 
     /**
-     * Bank routing number is the nine digit number used to identify a financial institution.
+     * Bank routing number is the nine-digit number used to identify a financial institution.
      *
      * @property string RoutingNumber
      */

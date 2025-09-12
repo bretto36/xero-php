@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting\ExpenseClaim;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Models\Accounting\Payment;
 
@@ -28,7 +29,7 @@ class ExpenseClaim extends Remote\Model
     /**
      * Last modified date UTC format.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
 
     /**
@@ -52,13 +53,13 @@ class ExpenseClaim extends Remote\Model
     /**
      * The date when the expense claim is due to be paid YYYY-MM-DD.
      *
-     * @property \DateTimeInterface PaymentDueDate
+     * @property DateTimeInterface PaymentDueDate
      */
 
     /**
      * The date the expense claim will be reported in Xero YYYY-MM-DD.
      *
-     * @property \DateTimeInterface ReportingDate
+     * @property DateTimeInterface ReportingDate
      */
 
     /**
@@ -185,7 +186,7 @@ class ExpenseClaim extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {
@@ -217,7 +218,7 @@ class ExpenseClaim extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPaymentDueDate()
     {
@@ -225,7 +226,7 @@ class ExpenseClaim extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getReportingDate()
     {

@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PayrollUS;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Models\PayrollUS\Timesheet\TimesheetLine;
 
@@ -16,13 +17,13 @@ class Timesheet extends Remote\Model
     /**
      * Period start date.
      *
-     * @property \DateTimeInterface StartDate
+     * @property DateTimeInterface StartDate
      */
 
     /**
      * Period end date.
      *
-     * @property \DateTimeInterface EndDate
+     * @property DateTimeInterface EndDate
      */
 
     /**
@@ -155,7 +156,7 @@ class Timesheet extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartDate()
     {
@@ -163,11 +164,11 @@ class Timesheet extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Timesheet
      */
-    public function setStartDate(\DateTimeInterface $value)
+    public function setStartDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('StartDate', $value);
         $this->_data['StartDate'] = $value;
@@ -176,7 +177,7 @@ class Timesheet extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEndDate()
     {
@@ -184,11 +185,11 @@ class Timesheet extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Timesheet
      */
-    public function setEndDate(\DateTimeInterface $value)
+    public function setEndDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('EndDate', $value);
         $this->_data['EndDate'] = $value;

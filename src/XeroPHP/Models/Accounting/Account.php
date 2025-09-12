@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\AttachmentTrait;
 
@@ -10,7 +11,7 @@ class Account extends Remote\Model
     use AttachmentTrait;
 
     /**
-     * Customer defined alpha numeric account code e.g 200 or SALES (max length = 10).
+     * Customer defined alphanumeric account code e.g. 200 or SALES (max length = 10).
      *
      * @property string Code
      */
@@ -34,7 +35,7 @@ class Account extends Remote\Model
      */
 
     /**
-     * Accounts with a status of ACTIVE can be updated to ARCHIVED. See Account Status Codes.
+     * Accounts with a status of "ACTIVE" can be updated to "ARCHIVED". See Account Status Codes.
      *
      * @property string Status
      */
@@ -117,7 +118,7 @@ class Account extends Remote\Model
     /**
      * Last modified date UTC format.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
     const ACCOUNT_CLASS_TYPE_ASSET = 'ASSET';
 
@@ -594,7 +595,7 @@ class Account extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {

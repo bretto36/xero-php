@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 class BrandingTheme extends Remote\Model
@@ -38,7 +39,7 @@ class BrandingTheme extends Remote\Model
     /**
      * UTC timestamp of creation date of branding theme.
      *
-     * @property \DateTimeInterface CreatedDateUTC
+     * @property DateTimeInterface CreatedDateUTC
      */
 
     /**
@@ -224,7 +225,7 @@ class BrandingTheme extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getCreatedDateUTC()
     {
@@ -232,11 +233,11 @@ class BrandingTheme extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return BrandingTheme
      */
-    public function setCreatedDateUTC(\DateTimeInterface $value)
+    public function setCreatedDateUTC(DateTimeInterface $value)
     {
         $this->propertyUpdated('CreatedDateUTC', $value);
         $this->_data['CreatedDateUTC'] = $value;

@@ -2,11 +2,11 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\AttachmentTrait;
 use XeroPHP\Traits\PDFTrait;
 use XeroPHP\Traits\HistoryTrait;
-use XeroPHP\Models\Accounting\LineItem;
 
 class Quote extends Remote\Model
 {
@@ -23,13 +23,13 @@ class Quote extends Remote\Model
     /**
      * Date quote was issued – YYYY-MM-DD
      *
-     * @property \DateTimeInterface Date
+     * @property DateTimeInterface Date
      */
 
     /**
      * Date quote expires – YYYY-MM-DD
      *
-     * @property \DateTimeInterface ExpiryDate
+     * @property DateTimeInterface ExpiryDate
      */
 
     /**
@@ -77,7 +77,7 @@ class Quote extends Remote\Model
     /**
      * Last modified date UTC format.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
 
     /**
@@ -262,7 +262,7 @@ class Quote extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -270,11 +270,11 @@ class Quote extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Quote
      */
-    public function setDate(\DateTimeInterface $value)
+    public function setDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('Date', $value);
         $this->_data['Date'] = $value;
@@ -283,7 +283,7 @@ class Quote extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getExpiryDate()
     {
@@ -291,11 +291,11 @@ class Quote extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Quote
      */
-    public function setExpiryDate(\DateTimeInterface $value)
+    public function setExpiryDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('ExpiryDate', $value);
         $this->_data['ExpiryDate'] = $value;
@@ -406,7 +406,7 @@ class Quote extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {

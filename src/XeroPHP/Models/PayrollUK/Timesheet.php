@@ -1,16 +1,18 @@
 <?php
+
 namespace XeroPHP\Models\PayrollUK;
 
-use XeroPHP\Remote;
+use DateTimeInterface;
 use XeroPHP\Models\PayrollUK\Timesheet\Line;
+use XeroPHP\Remote;
 use XeroPHP\Traits\TitleCaseKeysBeforeSave;
 
 class Timesheet extends Remote\Model
 {
     use TitleCaseKeysBeforeSave;
 
-    const TYPE_DRAFT = 'Draft';
-    const TYPE_APPROVED = 'Approved';
+    const TYPE_DRAFT     = 'Draft';
+    const TYPE_APPROVED  = 'Approved';
     const TYPE_COMPLETED = 'Completed';
 
     /**
@@ -99,7 +101,7 @@ class Timesheet extends Remote\Model
             'status'            => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'totalHours'        => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
             'updatedDateUTC'    => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
-            'lines'             => [false, self::PROPERTY_TYPE_OBJECT, Line::class, true, true]
+            'lines'             => [false, self::PROPERTY_TYPE_OBJECT, Line::class, true, true],
         ];
     }
 
@@ -108,17 +110,17 @@ class Timesheet extends Remote\Model
      */
     public function getPayrollCalendarID()
     {
-        return $this->_data[ 'payrollCalendarID' ];
+        return $this->_data['payrollCalendarID'];
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
     public function setPayrollCalendarID(string $value)
     {
         $this->propertyUpdated('payrollCalendarID', $value);
-        $this->_data[ 'payrollCalendarID' ] = $value;
+        $this->_data['payrollCalendarID'] = $value;
 
         return $this;
     }
@@ -128,27 +130,27 @@ class Timesheet extends Remote\Model
      */
     public function getEmployeeID()
     {
-        return $this->_data[ 'employeeID' ];
+        return $this->_data['employeeID'];
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      * @return $this
      */
     public function setEmployeeID(string $value)
     {
         $this->propertyUpdated('employeeID', $value);
-        $this->_data[ 'employeeID' ] = $value;
+        $this->_data['employeeID'] = $value;
 
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartDate()
     {
-        return $this->_data[ 'startDate' ];
+        return $this->_data['startDate'];
     }
 
     /**
@@ -158,17 +160,17 @@ class Timesheet extends Remote\Model
     public function setStartDate($value)
     {
         $this->propertyUpdated('startDate', $value);
-        $this->_data[ 'startDate' ] = $value;
+        $this->_data['startDate'] = $value;
 
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEndDate()
     {
-        return $this->_data[ 'endDate' ];
+        return $this->_data['endDate'];
     }
 
     /**
@@ -178,7 +180,7 @@ class Timesheet extends Remote\Model
     public function setEndDate($value)
     {
         $this->propertyUpdated('endDate', $value);
-        $this->_data[ 'endDate' ] = $value;
+        $this->_data['endDate'] = $value;
 
         return $this;
     }
@@ -188,34 +190,34 @@ class Timesheet extends Remote\Model
      */
     public function getLines()
     {
-        return $this->_data[ 'lines' ];
+        return $this->_data['lines'];
     }
 
     /**
-     * @param Line $value
+     * @param  Line  $value
      * @return $this
      */
     public function addLine(Line $value)
     {
         $this->propertyUpdated('lines', $value);
 
-        if (!isset($this->_data[ 'lines' ])) {
-            $this->_data[ 'lines' ] = new Remote\Collection;
+        if (!isset($this->_data['lines'])) {
+            $this->_data['lines'] = new Remote\Collection;
         }
 
-        $this->_data[ 'lines' ][] = $value;
+        $this->_data['lines'][] = $value;
 
         return $this;
     }
 
     /**
-     * @param Remote\Collection $value
+     * @param  Remote\Collection  $value
      * @return $this
      */
     public function setLines(Remote\Collection $value)
     {
         $this->propertyUpdated('lines', $value);
-        $this->_data[ 'lines' ] = $collectionOfLines;
+        $this->_data['lines'] = $value;
 
         return $this;
     }
@@ -233,7 +235,7 @@ class Timesheet extends Remote\Model
      */
     public function getTimesheetID()
     {
-        return $this->_data[ 'timesheetID' ];
+        return $this->_data['timesheetID'];
     }
 
     /**
@@ -241,7 +243,7 @@ class Timesheet extends Remote\Model
      */
     public function getStatus()
     {
-        return $this->_data[ 'status' ];
+        return $this->_data['status'];
     }
 
     /**
@@ -249,14 +251,14 @@ class Timesheet extends Remote\Model
      */
     public function getTotalHours()
     {
-        return $this->_data[ 'totalHours' ];
+        return $this->_data['totalHours'];
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {
-        return $this->_data[ 'updatedDateUTC' ];
+        return $this->_data['updatedDateUTC'];
     }
 }

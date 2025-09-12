@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PayrollUS\Employee;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 class SalaryAndWage extends Remote\Model
@@ -53,7 +54,7 @@ class SalaryAndWage extends Remote\Model
     /**
      * The effective date of the Salary and Wages.
      *
-     * @property \DateTimeInterface EffectiveDate
+     * @property DateTimeInterface EffectiveDate
      */
 
     /**
@@ -286,7 +287,7 @@ class SalaryAndWage extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEffectiveDate()
     {
@@ -294,11 +295,11 @@ class SalaryAndWage extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return SalaryAndWage
      */
-    public function setEffectiveDate(\DateTimeInterface $value)
+    public function setEffectiveDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('EffectiveDate', $value);
         $this->_data['EffectiveDate'] = $value;

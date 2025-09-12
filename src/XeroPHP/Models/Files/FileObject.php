@@ -2,7 +2,7 @@
 
 namespace XeroPHP\Models\Files;
 
-class Object
+class FileObject
 {
     const OBJECT_GROUP_ACCOUNT = 'Account';
 
