@@ -4,7 +4,7 @@ namespace XeroPHP\Remote;
 
 class Exception extends \XeroPHP\Exception
 {
-    protected ?Response $response = null;
+    protected $response = null;
 
     public function setResponse(Response $response): self
     {

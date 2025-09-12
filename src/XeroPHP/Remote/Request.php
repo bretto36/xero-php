@@ -69,10 +69,17 @@ class Request
         $this->headers = [];
         $this->parameters = [];
 
-        $this->method = match ($method) {
-            self::METHOD_GET, self::METHOD_PUT, self::METHOD_POST, self::METHOD_DELETE => $method,
-            default                                                                    => throw new Exception("Invalid request method [$method]"),
-        };
+        switch ($method) {
+            case self::METHOD_GET:
+            case self::METHOD_PUT:
+            case self::METHOD_POST:
+            case self::METHOD_DELETE:
+                $this->method = $method;
+
+                break;
+            default:
+                throw new Exception("Invalid request method [{$method}]");
+        }
 
         //Default to XML so you get the  xsi:type attribute in the root node.
         $this->setHeader(self::HEADER_ACCEPT, $app->getConfigOption('xero', 'default_content_type'));

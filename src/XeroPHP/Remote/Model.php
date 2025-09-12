@@ -7,7 +7,6 @@ use DateTime;
 use DateTimeInterface;
 use DateTimeZone;
 use JsonSerializable;
-use ReturnTypeWillChange;
 use XeroPHP\Helpers;
 use XeroPHP\Application;
 use XeroPHP\Remote\Exception\RequiredFieldException;
@@ -560,7 +559,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
      *
      * @return array
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->toStringArray();
@@ -571,7 +570,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
      *
      * @return bool
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return $this->__isset($offset);
@@ -582,7 +581,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
      *
      * @return mixed
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->__get($offset);
@@ -594,7 +593,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
      *
      * @return mixed
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         return $this->__set($offset, $value);
@@ -603,7 +602,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
     /**
      * @param mixed $offset
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->_data[$offset]);
