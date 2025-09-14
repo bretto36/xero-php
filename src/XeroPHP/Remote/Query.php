@@ -28,6 +28,8 @@ class Query
 
     private $pageSize;
 
+    private $pageToken;
+
     private $fromDate;
 
     private $toDate;
@@ -53,6 +55,7 @@ class Query
         $this->modifiedAfter   = null;
         $this->page            = null;
         $this->pageSize        = null;
+        $this->pageToken       = null;
         $this->offset          = null;
         $this->includeArchived = false;
         $this->createdByMyApp  = false;
@@ -230,7 +233,7 @@ class Query
      */
     public function page($page = 1)
     {
-        /** @var ObjectInterface $from_class */
+        /** @var ObjectInterface|string $from_class */
         $from_class = $this->from_class;
         if (!$from_class::isPageable()) {
             throw new Exception(sprintf('%s does not support paging.', $from_class));
@@ -250,7 +253,7 @@ class Query
      */
     public function pageSize($pageSize = 100)
     {
-        /** @var ObjectInterface $from_class */
+        /** @var ObjectInterface|string $from_class */
         $from_class = $this->from_class;
         if (!$from_class::isPageable()) {
             throw new Exception(sprintf('%s does not support paging.', $from_class));
@@ -258,6 +261,23 @@ class Query
         $this->pageSize = (int)$pageSize;
 
         return $this;
+    }
+
+
+    /**
+     * @return $this
+     * @throws Exception
+     */
+    public function pageToken(?string $pageToken)
+    {
+        $this->pageToken = $pageToken;
+
+        return $this;
+    }
+
+    public function getPageToken()
+    {
+        return $this->pageToken;
     }
 
     /**
@@ -359,6 +379,10 @@ class Query
             $request->setParameter('pageSize', $this->pageSize);
         }
 
+        if ($this->pageToken !== null) {
+            $request->setParameter('pageToken', $this->pageToken);
+        }
+
         if ($this->offset !== null) {
             $request->setParameter('offset', $this->offset);
         }
@@ -381,6 +405,9 @@ class Query
             $built_element->fromStringArray($element);
             $elements->append($built_element);
         }
+
+        // Handle the pagination token of the XPM 3.1 api
+        $this->pageToken($request->getResponse()->getPageToken());
 
         return $elements;
     }
