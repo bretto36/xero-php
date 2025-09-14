@@ -1,6 +1,7 @@
 <?php
 namespace XeroPHP\Models\PayrollUK;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\TitleCaseKeysBeforeSave;
 
@@ -116,7 +117,7 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPeriodStartDate()
     {
@@ -124,7 +125,7 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPeriodEndDate()
     {

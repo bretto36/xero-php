@@ -4,39 +4,32 @@ namespace XeroPHP\Models\PracticeManager\Model;
 
 use XeroPHP\Remote;
 
+/**
+ * @property string ID
+ * @property string Name
+ */
 abstract class IdAndNameModel extends Remote\Model
 {
     /**
-     * @property string ID
-     * @property string Name
-     */
-
-    /**
      * Get the resource uri of the class (AccountManagers) etc.
-     *
-     * @return string
      */
-    public static function getResourceURI()
+    public static function getResourceURI(): string
     {
         return '';
     }
 
     /**
      * Get the guid property.
-     *
-     * @return string
      */
-    public static function getGUIDProperty()
+    public static function getGUIDProperty(): string
     {
         return '';
     }
 
     /**
      * Get the stem of the API (core.xro) etc.
-     *
-     * @return string|null
      */
-    public static function getAPIStem()
+    public static function getAPIStem(): string
     {
         return Remote\URL::API_PRACTICE_MANAGER;
     }
@@ -44,10 +37,9 @@ abstract class IdAndNameModel extends Remote\Model
     /**
      * Get the supported methods.
      */
-    public static function getSupportedMethods()
+    public static function getSupportedMethods(): array
     {
-        return [
-        ];
+        return [];
     }
 
     /**
@@ -57,18 +49,16 @@ abstract class IdAndNameModel extends Remote\Model
      *  [2] - PHP type
      *  [3] - Is an Array
      *  [4] - Saves directly.
-     *
-     * @return array
      */
-    public static function getProperties()
+    public static function getProperties(): array
     {
         return [
-            'ID'         => [false, self::PROPERTY_TYPE_INT, null, false, false],
-            'Name'       => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'ID'   => [false, self::PROPERTY_TYPE_INT, null, false, false],
+            'Name' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
         ];
     }
 
-    public static function isPageable()
+    public static function isPageable(): bool
     {
         return false;
     }
@@ -82,7 +72,7 @@ abstract class IdAndNameModel extends Remote\Model
     }
 
     /**
-     * @param int $value
+     * @param  int  $value
      *
      * @return self
      */
@@ -103,7 +93,7 @@ abstract class IdAndNameModel extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */

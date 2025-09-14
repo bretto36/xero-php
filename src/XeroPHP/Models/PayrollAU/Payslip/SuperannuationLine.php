@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PayrollAU\Payslip;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 class SuperannuationLine extends Remote\Model
@@ -45,7 +46,7 @@ class SuperannuationLine extends Remote\Model
     /**
      * Superannuation payment date for the current period (YYYY-MM-DD).
      *
-     * @property \DateTimeInterface PaymentDateForThisPeriod
+     * @property DateTimeInterface PaymentDateForThisPeriod
      */
 
     /**
@@ -266,7 +267,7 @@ class SuperannuationLine extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPaymentDateForThisPeriod()
     {
@@ -274,11 +275,11 @@ class SuperannuationLine extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return SuperannuationLine
      */
-    public function setPaymentDateForThisPeriod(\DateTimeInterface $value)
+    public function setPaymentDateForThisPeriod(DateTimeInterface $value)
     {
         $this->propertyUpdated('PaymentDateForThisPeriod', $value);
         $this->_data['PaymentDateForThisPeriod'] = $value;

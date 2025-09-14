@@ -2,10 +2,12 @@
 
 namespace XeroPHP;
 
+use XeroPHP\Webhook\Event;
+
 class Webhook
 {
     /**
-     * @var \XeroPHP\Application
+     * @var Application
      */
     private $application;
 
@@ -30,13 +32,13 @@ class Webhook
     private $webhookEvent;
 
     /**
-     * @param \XeroPHP\Application $application
+     * @param  Application $application
      * @param string $payload
      * @param string|null $event
      *
-     * @throws \XeroPHP\Exception
-     *
      * @return void
+     * @throws Exception
+     *
      */
     public function __construct($application, $payload, $event = null)
     {
@@ -63,7 +65,7 @@ class Webhook
     }
 
     /**
-     * @return \XeroPHP\Application
+     * @return Application
      */
     public function getApplication()
     {
@@ -105,7 +107,7 @@ class Webhook
     }
 
     /**
-     * @return \XeroPHP\Webhook\Event[]
+     * @return Event[]
      */
     public function getEvents()
     {

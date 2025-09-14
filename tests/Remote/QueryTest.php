@@ -2,12 +2,12 @@
 
 namespace XeroPHP\Tests\Remote;
 
+use PHPUnit\Framework\TestCase;
 use XeroPHP\Application;
 use XeroPHP\Remote\Query;
 
-class QueryTest extends \PHPUnit_Framework_TestCase
+class QueryTest extends TestCase
 {
-
    function testWhere() {
 
       $xero_app = $this->getApplication();

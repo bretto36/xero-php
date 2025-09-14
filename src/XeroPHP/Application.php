@@ -43,6 +43,7 @@ class Application
      * @param $token
      * @param $tenantId
      * $param $constructClient
+     * @param  bool|null  $constructClient
      */
     public function __construct($token, $tenantId, ?bool $constructClient = true)
     {
@@ -73,7 +74,7 @@ class Application
     public function getConfig($key)
     {
         if (!isset($this->config[$key])) {
-            throw new Exception("Invalid configuration key [{$key}]");
+            throw new Exception("Invalid configuration key [$key]");
         }
 
         return $this->config[$key];
@@ -88,7 +89,7 @@ class Application
     public function getConfigOption($config, $option)
     {
         if (!isset($this->getConfig($config)[$option])) {
-            throw new Exception("Invalid configuration option [{$option}]");
+            throw new Exception("Invalid configuration option [$option]");
         }
 
         return $this->getConfig($config)[$option];
@@ -121,7 +122,7 @@ class Application
     public function setConfigOption($config, $option, $value)
     {
         if (!isset($this->config[$config])) {
-            throw new Exception("Invalid configuration key [{$config}]");
+            throw new Exception("Invalid configuration key [$config]");
         }
         $this->config[$config][$option] = $value;
 
@@ -163,7 +164,7 @@ class Application
         $class = $this->prependConfigNamespace($class);
 
         if (!class_exists($class)) {
-            throw new Exception("Class does not exist [{$class}]");
+            throw new Exception("Class does not exist [$class]");
         }
 
         return $class;
@@ -182,7 +183,7 @@ class Application
     }
 
     /**
-     * As you should never have a GUID for a non-existent object, will throw a NotFoundExceptioon.
+     * As you should never have a GUID for a non-existent object, will throw a NotFoundException.
      *
      * @param $model
      * @param $guid
@@ -208,10 +209,8 @@ class Application
         $request = new Request($this, $url, Request::METHOD_GET);
         $request->send();
 
-        //Return the first (if any) element from the response.
+        // Return the first (if any) element from the response.
         foreach ($request->getResponse()->getElements() as $element) {
-
-            /** @var $object Remote\Model */
             $object = new $class($this);
             $object->fromStringArray($element);
 
@@ -252,8 +251,6 @@ class Application
         $elements = new Collection();
 
         foreach ($request->getResponse()->getElements() as $element) {
-
-            /** @var $object Remote\Model */
             $object = new $class($this);
             $object->fromStringArray($element);
             $elements->append($object);
@@ -410,7 +407,7 @@ class Application
                 $property_array = [];
                 /** @var Remote\Model[] $property_objects */
                 foreach ($property_objects as $property_object) {
-                    $property_array[] = $property_object->toStringArray(false);
+                    $property_array[] = $property_object->toStringArray();
                 }
 
                 $root_node_name = Helpers::pluralize($property_type::getRootNodeName());

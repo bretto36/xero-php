@@ -19,16 +19,16 @@ use XeroPHP\Remote\Exception\UnknownStatusException;
 class Response
 {
     static $STATUS_SUCCESS = [
-        'OK' => 200,
-        'CREATED' => 201,
-        'ACCEPTED' => 202,
+        'OK'                            => 200,
+        'CREATED'                       => 201,
+        'ACCEPTED'                      => 202,
         'NON_AUTHORITATIVE_INFORMATION' => 203,
-        'NO_CONTENT' => 204,
-        'RESET_CONTENT' => 205,
-        'PARTIAL_CONTENT' => 206,
-        'MULTI_STATUS' => 207,
-        'ALREADY_REPORTED' => 208,
-        'IM_USED' => 226,
+        'NO_CONTENT'                    => 204,
+        'RESET_CONTENT'                 => 205,
+        'PARTIAL_CONTENT'               => 206,
+        'MULTI_STATUS'                  => 207,
+        'ALREADY_REPORTED'              => 208,
+        'IM_USED'                       => 226,
     ];
 
     const STATUS_OK = 200;
@@ -74,12 +74,14 @@ class Response
 
     private $root_warnings;
 
+    private $pageToken;
+
     public function __construct(Request $request, $response_body, $status, $headers)
     {
-        $this->request = $request;
+        $this->request       = $request;
         $this->response_body = $response_body;
-        $this->status = $status;
-        $this->headers = $headers;
+        $this->status        = $status;
+        $this->headers       = $headers;
     }
 
     /**
@@ -112,8 +114,6 @@ class Response
 
                 throw (new BadRequestException())->setResponse($this);
 
-
-            /** @noinspection PhpMissingBreakStatementInspection */
             // no break
             case self::STATUS_UNAUTHORISED:
                 //This is where OAuth errors end up, this could maybe change to an OAuth exception
@@ -171,7 +171,7 @@ class Response
     {
         if (!empty($this->elements)) {
             $field_errors = [];
-            foreach ($this->elements as $n => $element) {
+            foreach ($this->elements as $element) {
                 if (isset($element['ValidationErrors'])) {
                     $field_errors[] = $element['ValidationErrors'][0]['Message'];
                 }
@@ -207,6 +207,8 @@ class Response
         if (isset($this->element_errors[$element_id])) {
             return $this->element_errors[$element_id];
         }
+
+        return null;
     }
 
     public function getElementErrors()
@@ -234,13 +236,18 @@ class Response
         return $this->oauth_response;
     }
 
+    public function getPageToken()
+    {
+        return $this->pageToken;
+    }
+
     public function parseBody()
     {
-        $this->elements = [];
-        $this->element_errors = [];
+        $this->elements         = [];
+        $this->element_errors   = [];
         $this->element_warnings = [];
-        $this->root_error = [];
-        $this->root_warnings = [];
+        $this->root_error       = [];
+        $this->root_warnings    = [];
 
         if (!isset($this->headers[Request::HEADER_CONTENT_TYPE])) {
             //Nothing to parse
@@ -249,7 +256,7 @@ class Response
 
         //Iterate in priority order
         foreach ($this->headers[Request::HEADER_CONTENT_TYPE] as $ct) {
-            list($content_type) = explode(';', $ct);
+            [$content_type] = explode(';', $ct);
 
             switch ($content_type) {
                 case Request::CONTENT_TYPE_XML:
@@ -322,8 +329,18 @@ class Response
                 case 'pagination':
                     // TODO: We can potentially handle the page info and make it a value on the response object
                     break;
-                case 'pagination':
-                    // introduced in https://github.com/XeroAPI/xero-node/releases/tag/9.0.0 but not supported here yet
+                // For XPM Calls it returns a Pagination Element
+                case 'Pagination':
+                    $queryParameters = [];
+                    if (isset($root_child->Links->Next)) {
+                        // https://api.xero.com/practicemanager/3.1/client.api/paged-list?pageToken=Pb5pi6pTp2muZDf-qhr3pDW6b5C2UqpzqmVS56sQ_a0_0WqKt1enca9o&pageSize=2
+                        // Get the page token from the next link
+                        $queryString = parse_url($root_child->Links->Next, PHP_URL_QUERY);
+
+                        parse_str($queryString, $queryParameters);
+                    }
+                    $this->pageToken = $queryParameters['pageToken'] ?? null;
+
                     break;
                 case 'ErrorNumber':
                     $this->root_error['code'] = (string)$root_child;
@@ -333,13 +350,17 @@ class Response
                     $this->root_error['type'] = (string)$root_child;
 
                     break;
+                case 'Status':
+                    $this->root_error['status'] = (string)$root_child;
+
+                    break;
                 case 'Message':
                     $this->root_error['message'] = (string)$root_child;
 
                     break;
                 case 'Warnings':
                     $this->root_warnings = [];
-                    foreach ($root_child->children() as $element_index => $element) {
+                    foreach ($root_child->children() as $element) {
                         $this->root_warnings[] = Helpers::XMLToArray($element);
                     }
 
@@ -348,6 +369,8 @@ class Response
                 case 'PayItems':
                 case 'Settings':
                 case 'Timesheet':
+                case 'Staff':
+                case 'Client':
                     // some xero endpoints are 1D so we can parse them straight away
                     $this->elements[] = Helpers::XMLToArray($root_child);
 
@@ -356,7 +379,7 @@ class Response
                 default:
                     //Happy to make the assumption that there will only be one
                     //root node with > than 2D children.
-                    foreach ($root_child->children() as $element_index => $element) {
+                    foreach ($root_child->children() as $element) {
                         $this->elements[] = Helpers::XMLToArray($element);
                     }
             }
@@ -373,9 +396,6 @@ class Response
                 case 'pagination':
                     // TODO: We can potentially handle the page info and make it a value on the response object
                     break;
-                case 'pagination':
-                    // introduced in https://github.com/XeroAPI/xero-node/releases/tag/9.0.0 but not supported here yet
-                    break;                
                 case 'ErrorNumber':
                     $this->root_error['code'] = $root_child;
 

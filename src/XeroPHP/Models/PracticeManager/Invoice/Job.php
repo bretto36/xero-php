@@ -4,53 +4,44 @@ namespace XeroPHP\Models\PracticeManager\Invoice;
 
 use XeroPHP\Remote;
 
+/**
+ * @property int ID
+ * @property string Name
+ * @property string Description
+ * @property string ClientOrderNumber
+ * @property Task[] Tasks
+ * @property Cost[] Costs
+ */
 class Job extends Remote\Model
 {
     /**
-     * @property int ID
-     * @property string Name
-     * @property string Description
-     * @property string ClientOrderNumber
-     * @property Task[] Tasks
-     * @property Cost[] Costs
-     */
-
-    /**
      * Get the resource uri of the class (Jobs) etc.
-     *
-     * @return string
      */
-    public static function getResourceURI()
+    public static function getResourceURI(): string
     {
         return '';
     }
 
     /**
      * Get the root node name.  Just the unqualified classname.
-     *
-     * @return string
      */
-    public static function getRootNodeName()
+    public static function getRootNodeName(): string
     {
         return 'Job';
     }
 
     /**
      * Get the guid property.
-     *
-     * @return string
      */
-    public static function getGUIDProperty()
+    public static function getGUIDProperty(): string
     {
         return '';
     }
 
     /**
      * Get the stem of the API (core.xro) etc.
-     *
-     * @return string|null
      */
-    public static function getAPIStem()
+    public static function getAPIStem(): ?string
     {
         return Remote\URL::API_PRACTICE_MANAGER;
     }
@@ -58,10 +49,9 @@ class Job extends Remote\Model
     /**
      * Get the supported methods.
      */
-    public static function getSupportedMethods()
+    public static function getSupportedMethods(): array
     {
-        return [
-        ];
+        return [];
     }
 
     /**
@@ -71,10 +61,8 @@ class Job extends Remote\Model
      *  [2] - PHP type
      *  [3] - Is an Array
      *  [4] - Saves directly.
-     *
-     * @return array
      */
-    public static function getProperties()
+    public static function getProperties(): array
     {
         return [
             'ID'                => [true, self::PROPERTY_TYPE_STRING, null, false, false],
@@ -86,7 +74,7 @@ class Job extends Remote\Model
         ];
     }
 
-    public static function isPageable()
+    public static function isPageable(): bool
     {
         return false;
     }
@@ -100,7 +88,7 @@ class Job extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -121,7 +109,7 @@ class Job extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -142,7 +130,7 @@ class Job extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -163,7 +151,7 @@ class Job extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -184,14 +172,14 @@ class Job extends Remote\Model
     }
 
     /**
-     * @param Task $value
+     * @param  Task  $value
      *
      * @return self
      */
     public function addTask(Task $value)
     {
         $this->propertyUpdated('Tasks', $value);
-        if (! isset($this->_data['Tasks'])) {
+        if (!isset($this->_data['Tasks'])) {
             $this->_data['Tasks'] = new Remote\Collection();
         }
         $this->_data['Tasks'][] = $value;
@@ -208,14 +196,14 @@ class Job extends Remote\Model
     }
 
     /**
-     * @param Cost $value
+     * @param  Cost  $value
      *
      * @return self
      */
     public function addCost(Cost $value)
     {
         $this->propertyUpdated('Costs', $value);
-        if (! isset($this->_data['Costs'])) {
+        if (!isset($this->_data['Costs'])) {
             $this->_data['Costs'] = new Remote\Collection();
         }
         $this->_data['Costs'][] = $value;

@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PayrollAU;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Models\PayrollAU\Payslip\TaxLine;
 use XeroPHP\Models\PayrollAU\Payslip\EarningsLine;
@@ -95,7 +96,7 @@ class Payslip extends Remote\Model
     /**
      * Last edited.
      *
-     * @property \DateTimeInterface LastEdited
+     * @property DateTimeInterface LastEdited
      */
 
     /**
@@ -489,7 +490,7 @@ class Payslip extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getLastEdited()
     {

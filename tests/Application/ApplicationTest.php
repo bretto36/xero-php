@@ -2,9 +2,10 @@
 
 namespace XeroPHP\Tests\Application;
 
+use PHPUnit\Framework\TestCase;
 use XeroPHP\Application;
 
-class ApplicationTest extends \PHPUnit_Framework_TestCase
+class ApplicationTest extends TestCase
 {
     public function testAllowsFQNWhenValidatingModelClass()
     {
@@ -28,7 +29,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 
     public function testThrowsExceptionWhenUnableToValidateClass()
     {
-        $this->setExpectedException(\Exception::class);
+        $this->expectException(\Exception::class);
 
         $this->instance()->validateModelClass('Unknown\\Namespaced\\Class');
 
@@ -36,9 +37,9 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 
     public function testSettingMissingConfigOptionThrowsException()
     {
-        $this->setExpectedException(\Exception::class);
+        $this->expectException(\Exception::class);
 
-        $this->instance()->setConfigOption('non_exitant_key', 'sub_key', 'value');
+        $this->instance()->setConfigOption('non_existent_key', 'sub_key', 'value');
     }
 
     public function testSetConfigOptionUpdatesConfiguration()
@@ -51,7 +52,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame(
             $expected,
-            $app->getConfigOption($key, $subkey, $expected)
+            $app->getConfigOption($key, $subkey)
         );
     }
 
@@ -80,14 +81,14 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 
     public function testAccessingMissingConfigOptionThrowsException()
     {
-        $this->setExpectedException(\Exception::class);
+        $this->expectException(\Exception::class);
 
         $this->instance()->getConfigOption('xero', 'non_existent_key');
     }
 
     public function testAccessingMissingConfigThrowsException()
     {
-        $this->setExpectedException(\Exception::class);
+        $this->expectException(\Exception::class);
 
         $this->instance()->getConfig('non_existent_key');
     }

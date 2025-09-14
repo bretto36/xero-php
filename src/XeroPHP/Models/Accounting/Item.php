@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\HistoryTrait;
 use XeroPHP\Models\Accounting\Item\Sale;
@@ -98,7 +99,7 @@ class Item extends Remote\Model
     /**
      * Last modified date in UTC format.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
 
     /**
@@ -369,17 +370,6 @@ class Item extends Remote\Model
      * @param Purchase $value
      *
      * @return Item
-     *
-     * @deprecated
-     */
-    public function addPurchaseDetail(Purchase $value)
-    {
-    }
-
-    /**
-     * @param Purchase $value
-     *
-     * @return Item
      */
     public function setPurchaseDetails(Purchase $value)
     {
@@ -395,17 +385,6 @@ class Item extends Remote\Model
     public function getSalesDetails()
     {
         return $this->_data['SalesDetails'];
-    }
-
-    /**
-     * @param Sale $value
-     *
-     * @return Item
-     *
-     * @deprecated
-     */
-    public function addSalesDetail(Sale $value)
-    {
     }
 
     /**
@@ -485,7 +464,7 @@ class Item extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {
@@ -493,11 +472,11 @@ class Item extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Item
      */
-    public function setUpdatedDateUTC(\DateTimeInterface $value)
+    public function setUpdatedDateUTC(DateTimeInterface $value)
     {
         $this->propertyUpdated('UpdatedDateUTC', $value);
         $this->_data['UpdatedDateUTC'] = $value;

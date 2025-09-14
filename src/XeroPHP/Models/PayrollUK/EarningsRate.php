@@ -1,6 +1,7 @@
 <?php
 namespace XeroPHP\Models\PayrollUK;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\TitleCaseKeysBeforeSave;
 
@@ -215,7 +216,7 @@ class EarningsRate extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {
@@ -223,7 +224,7 @@ class EarningsRate extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getCreatedDateUTC()
     {

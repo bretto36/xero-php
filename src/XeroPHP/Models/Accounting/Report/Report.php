@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting\Report;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 abstract class Report extends Remote\Model
@@ -33,7 +34,7 @@ abstract class Report extends Remote\Model
     /**
      * Last modified date in UTC format.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
 
     /**

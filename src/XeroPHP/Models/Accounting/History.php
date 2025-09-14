@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote\Model;
 use XeroPHP\Remote\Request;
 
@@ -16,7 +17,7 @@ class History extends Model
     /**
      * UTC date that the history record was created.
      *
-     * @property \DateTimeInterface DateUTC
+     * @property DateTimeInterface DateUTC
      */
 
     /**
@@ -88,7 +89,7 @@ class History extends Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDateUTC()
     {

@@ -2,147 +2,63 @@
 
 namespace XeroPHP\Models\PracticeManager;
 
+use DateTimeInterface;
 use XeroPHP\Models\PracticeManager\Invoice\Contact;
 use XeroPHP\Models\PracticeManager\Invoice\Cost;
 use XeroPHP\Models\PracticeManager\Invoice\Job;
 use XeroPHP\Models\PracticeManager\Invoice\Task;
 use XeroPHP\Remote;
 
+/**
+ * @property string InternalID
+ * @property string ID
+ * @property string Type
+ * @property string Status
+ * @property string JobText
+ * @property DateTimeInterface Date
+ * @property DateTimeInterface DueDate
+ * @property float Amount
+ * @property float AmountTax
+ * @property float AmountIncludingTax
+ * @property float AmountPaid
+ * @property float AmountOutstanding
+ * @property \XeroPHP\Models\PracticeManager\Invoice\Client Client
+ * @property \XeroPHP\Models\PracticeManager\Invoice\Contact Contact
+ * @property \XeroPHP\Models\PracticeManager\Invoice\Job[] Jobs
+ * @property \XeroPHP\Models\PracticeManager\Invoice\Task[] Tasks
+ */
 class Invoice extends Remote\Model
 {
-    /**
-     * Xero identifier.
-     *
-     * @property string InternalID
-     */
-
-    /**
-     * Invoice Number.
-     *
-     * @property string ID
-     */
-
-    /**
-     * Type of Invoice
-     *
-     * @property string Type
-     */
-
-    /**
-     * Status of Invoice - Approved, Paid, Draft, Cancelled
-     *
-     * @property string Status
-     */
-
-    /**
-     * JobText of Invoice
-     *
-     * @property string JobText
-     */
-
-    /**
-     * Date of Invoice
-     *
-     * @property \DateTimeInterface Date
-     */
-
-    /**
-     * DueDate of Invoice
-     *
-     * @property \DateTimeInterface DueDate
-     */
-
-    /**
-     * Amount of Invoice
-     *
-     * @property float Amount
-     */
-
-    /**
-     * AmountTax of Invoice
-     *
-     * @property float AmountTax
-     */
-
-    /**
-     * AmountIncludingTax of Invoice
-     *
-     * @property float AmountIncludingTax
-     */
-
-    /**
-     * AmountPaid of Invoice
-     *
-     * @property float AmountPaid
-     */
-
-    /**
-     * AmountOutstanding of Invoice
-     *
-     * @property float AmountOutstanding
-     */
-
-    /**
-     * Client of Invoice
-     *
-     * @property \XeroPHP\Models\PracticeManager\Invoice\Client Client
-     */
-
-    /**
-     * Contact of Invoice
-     *
-     * @property \XeroPHP\Models\PracticeManager\Invoice\Contact Contact
-     */
-
-    /**
-     * Jobs of Invoice
-     *
-     * @property \XeroPHP\Models\PracticeManager\Invoice\Job[] Jobs
-     */
-
-    /**
-     * Tasks of Invoice
-     *
-     * @property \XeroPHP\Models\PracticeManager\Invoice\Task[] Tasks
-     */
-
-
     /**
      * Get the resource uri of the class (Clients) etc.
      *
      * @return string
      */
-    public static function getResourceURI()
+    public static function getResourceURI(): string
     {
         return 'invoice.api/list';
     }
 
     /**
      * Get the root node name.  Just the unqualified classname.
-     *
-     * @return string
      */
-    public static function getRootNodeName()
+    public static function getRootNodeName(): string
     {
         return 'InvoiceDefinition';
     }
 
     /**
      * Get the guid property.
-     *
-     * @return string
      */
-    public static function getGUIDProperty()
+    public static function getGUIDProperty(): string
     {
         return '';
     }
 
     /**
      * Get the stem of the API (core.xro) etc.
-     *
-     * @return string|null
      */
-    public static function getAPIStem()
+    public static function getAPIStem(): ?string
     {
         return Remote\URL::API_PRACTICE_MANAGER;
     }
@@ -150,7 +66,7 @@ class Invoice extends Remote\Model
     /**
      * Get the supported methods.
      */
-    public static function getSupportedMethods()
+    public static function getSupportedMethods(): array
     {
         return [
             Remote\Request::METHOD_POST,
@@ -167,10 +83,8 @@ class Invoice extends Remote\Model
      *  [2] - PHP type
      *  [3] - Is an Array
      *  [4] - Saves directly.
-     *
-     * @return array
      */
-    public static function getProperties()
+    public static function getProperties(): array
     {
         return [
             'InternalID'         => [false, self::PROPERTY_TYPE_INT, null, false, false],
@@ -194,7 +108,7 @@ class Invoice extends Remote\Model
         ];
     }
 
-    public static function isPageable()
+    public static function isPageable(): bool
     {
         return false;
     }
@@ -208,7 +122,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param int $value
+     * @param  int  $value
      *
      * @return self
      */
@@ -229,7 +143,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -250,7 +164,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -271,7 +185,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -292,7 +206,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -313,7 +227,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -326,7 +240,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -334,7 +248,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param  DateTimeInterface  $value
      *
      * @return self
      */
@@ -347,7 +261,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDueDate()
     {
@@ -355,7 +269,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param  DateTimeInterface  $value
      *
      * @return self
      */
@@ -376,7 +290,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -397,7 +311,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -418,7 +332,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -439,7 +353,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -460,7 +374,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -481,7 +395,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -502,7 +416,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -523,7 +437,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param Job $value
+     * @param  Job  $value
      *
      * @return self
      */
@@ -547,7 +461,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param Task $value
+     * @param  Task  $value
      *
      * @return self
      */
@@ -571,7 +485,7 @@ class Invoice extends Remote\Model
     }
 
     /**
-     * @param Cost $value
+     * @param  Cost  $value
      *
      * @return self
      */

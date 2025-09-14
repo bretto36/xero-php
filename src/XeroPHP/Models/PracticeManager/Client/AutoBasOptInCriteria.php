@@ -8,40 +8,32 @@ class AutoBasOptInCriteria extends Remote\Model
 {
     /**
      * Get the root node name.  Just the unqualified classname.
-     *
-     * @return string
      */
-    public static function getRootNodeName()
+    public static function getRootNodeName(): string
     {
         return 'AutoBasOptInCriteria';
     }
 
     /**
      * Get the resource uri of the class (AccountManagers) etc.
-     *
-     * @return string
      */
-    public static function getResourceURI()
+    public static function getResourceURI(): string
     {
         return '';
     }
 
     /**
      * Get the guid property.
-     *
-     * @return string
      */
-    public static function getGUIDProperty()
+    public static function getGUIDProperty(): string
     {
         return '';
     }
 
     /**
      * Get the stem of the API (core.xro) etc.
-     *
-     * @return string|null
      */
-    public static function getAPIStem()
+    public static function getAPIStem(): ?string
     {
         return Remote\URL::API_PRACTICE_MANAGER;
     }
@@ -49,7 +41,7 @@ class AutoBasOptInCriteria extends Remote\Model
     /**
      * Get the supported methods.
      */
-    public static function getSupportedMethods()
+    public static function getSupportedMethods(): array
     {
         return [];
     }
@@ -61,10 +53,8 @@ class AutoBasOptInCriteria extends Remote\Model
      *  [2] - PHP type
      *  [3] - Is an Array
      *  [4] - Saves directly.
-     *
-     * @return array
      */
-    public static function getProperties()
+    public static function getProperties(): array
     {
         return [
             'Annually'  => [false, self::PROPERTY_TYPE_STRING, null, false, false],
@@ -74,7 +64,7 @@ class AutoBasOptInCriteria extends Remote\Model
         ];
     }
 
-    public static function isPageable()
+    public static function isPageable(): bool
     {
         return false;
     }

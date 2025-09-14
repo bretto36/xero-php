@@ -1,6 +1,7 @@
 <?php
 namespace XeroPHP\Models\PayrollUK;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\TitleCaseKeysBeforeSave;
 
@@ -143,7 +144,7 @@ class PayRollCalendar extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPeriodStartDate()
     {
@@ -151,10 +152,10 @@ class PayRollCalendar extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      * @return $this
      */
-    public function setPeriodStartDate(\DateTimeInterface $value)
+    public function setPeriodStartDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('periodStartDate', $value);
         $this->_data[ 'periodStartDate' ] = $value;
@@ -163,7 +164,7 @@ class PayRollCalendar extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPaymentDate()
     {
@@ -171,10 +172,10 @@ class PayRollCalendar extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      * @return $this
      */
-    public function setPaymentDate(\DateTimeInterface $value)
+    public function setPaymentDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('paymentDate', $value);
         $this->_data[ 'paymentDate' ] = $value;
@@ -199,7 +200,7 @@ class PayRollCalendar extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPeriodEndDate()
     {
@@ -207,7 +208,7 @@ class PayRollCalendar extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {

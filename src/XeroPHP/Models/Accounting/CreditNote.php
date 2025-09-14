@@ -2,12 +2,12 @@
 
 namespace XeroPHP\Models\Accounting;
 
-use XeroPHP\Remote;
-use XeroPHP\Traits\PDFTrait;
-use XeroPHP\Traits\HistoryTrait;
-use XeroPHP\Traits\AttachmentTrait;
-use XeroPHP\Models\Accounting\LineItem;
+use DateTimeInterface;
 use XeroPHP\Models\Accounting\CreditNote\Allocation;
+use XeroPHP\Remote;
+use XeroPHP\Traits\AttachmentTrait;
+use XeroPHP\Traits\HistoryTrait;
+use XeroPHP\Traits\PDFTrait;
 
 class CreditNote extends Remote\Model
 {
@@ -30,7 +30,7 @@ class CreditNote extends Remote\Model
     /**
      * The date the credit note is issued YYYY-MM-DD.
      *
-     * @property \DateTimeInterface Date
+     * @property DateTimeInterface Date
      */
 
     /**
@@ -72,7 +72,7 @@ class CreditNote extends Remote\Model
     /**
      * UTC timestamp of last update to the credit note.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
 
     /**
@@ -84,7 +84,7 @@ class CreditNote extends Remote\Model
     /**
      * Date when credit note was fully paid(UTC format).
      *
-     * @property \DateTimeInterface FullyPaidOnDate
+     * @property DateTimeInterface FullyPaidOnDate
      */
 
     /**
@@ -211,29 +211,29 @@ class CreditNote extends Remote\Model
     public static function getProperties()
     {
         return [
-            'Type' => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
-            'Contact' => [false, self::PROPERTY_TYPE_OBJECT, 'Accounting\\Contact', false, false],
-            'Date' => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
-            'Status' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'LineAmountTypes' => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
-            'LineItems' => [false, self::PROPERTY_TYPE_OBJECT, 'Accounting\\LineItem', true, false],
-            'Payments' => [false, self::PROPERTY_TYPE_OBJECT, 'Accounting\\Payment', true, false],
-            'SubTotal' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
-            'TotalTax' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
-            'Total' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
-            'UpdatedDateUTC' => [false, self::PROPERTY_TYPE_TIMESTAMP, '\\DateTimeInterface', false, false],
-            'CurrencyCode' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'FullyPaidOnDate' => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
-            'CreditNoteID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'Type'             => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
+            'Contact'          => [false, self::PROPERTY_TYPE_OBJECT, 'Accounting\\Contact', false, false],
+            'Date'             => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
+            'Status'           => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'LineAmountTypes'  => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
+            'LineItems'        => [false, self::PROPERTY_TYPE_OBJECT, 'Accounting\\LineItem', true, false],
+            'Payments'         => [false, self::PROPERTY_TYPE_OBJECT, 'Accounting\\Payment', true, false],
+            'SubTotal'         => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
+            'TotalTax'         => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
+            'Total'            => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
+            'UpdatedDateUTC'   => [false, self::PROPERTY_TYPE_TIMESTAMP, '\\DateTimeInterface', false, false],
+            'CurrencyCode'     => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'FullyPaidOnDate'  => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
+            'CreditNoteID'     => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'CreditNoteNumber' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'Reference' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'SentToContact' => [false, self::PROPERTY_TYPE_BOOLEAN, null, false, false],
-            'CurrencyRate' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
-            'RemainingCredit' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'Allocations' => [false, self::PROPERTY_TYPE_OBJECT, 'Accounting\\CreditNote\\Allocation', true, true],
-            'BrandingThemeID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'HasAttachments' => [false, self::PROPERTY_TYPE_BOOLEAN, null, false, false],
-            'AppliedAmount' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false]
+            'Reference'        => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'SentToContact'    => [false, self::PROPERTY_TYPE_BOOLEAN, null, false, false],
+            'CurrencyRate'     => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
+            'RemainingCredit'  => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'Allocations'      => [false, self::PROPERTY_TYPE_OBJECT, 'Accounting\\CreditNote\\Allocation', true, true],
+            'BrandingThemeID'  => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'HasAttachments'   => [false, self::PROPERTY_TYPE_BOOLEAN, null, false, false],
+            'AppliedAmount'    => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
         ];
     }
 
@@ -251,7 +251,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CreditNote
      */
@@ -272,7 +272,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param Contact $value
+     * @param  Contact  $value
      *
      * @return CreditNote
      */
@@ -285,7 +285,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -293,11 +293,11 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param  DateTimeInterface  $value
      *
      * @return CreditNote
      */
-    public function setDate(\DateTimeInterface $value)
+    public function setDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('Date', $value);
         $this->_data['Date'] = $value;
@@ -314,7 +314,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CreditNote
      */
@@ -335,7 +335,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CreditNote
      */
@@ -356,14 +356,14 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param LineItem $value
+     * @param  LineItem  $value
      *
      * @return CreditNote
      */
     public function addLineItem(LineItem $value)
     {
         $this->propertyUpdated('LineItems', $value);
-        if (! isset($this->_data['LineItems'])) {
+        if (!isset($this->_data['LineItems'])) {
             $this->_data['LineItems'] = new Remote\Collection();
         }
         $this->_data['LineItems'][] = $value;
@@ -388,7 +388,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return CreditNote
      */
@@ -409,7 +409,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return CreditNote
      */
@@ -430,7 +430,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return CreditNote
      */
@@ -443,7 +443,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {
@@ -451,11 +451,11 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param  DateTimeInterface  $value
      *
      * @return CreditNote
      */
-    public function setUpdatedDateUTC(\DateTimeInterface $value)
+    public function setUpdatedDateUTC(DateTimeInterface $value)
     {
         $this->propertyUpdated('UpdatedDateUTC', $value);
         $this->_data['UpdatedDateUTC'] = $value;
@@ -472,7 +472,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CreditNote
      */
@@ -485,7 +485,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getFullyPaidOnDate()
     {
@@ -493,11 +493,11 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param  DateTimeInterface  $value
      *
      * @return CreditNote
      */
-    public function setFullyPaidOnDate(\DateTimeInterface $value)
+    public function setFullyPaidOnDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('FullyPaidOnDate', $value);
         $this->_data['FullyPaidOnDate'] = $value;
@@ -514,7 +514,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CreditNote
      */
@@ -535,7 +535,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CreditNote
      */
@@ -556,7 +556,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CreditNote
      */
@@ -577,7 +577,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param bool $value
+     * @param  bool  $value
      *
      * @return CreditNote
      */
@@ -598,7 +598,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return CreditNote
      */
@@ -619,7 +619,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CreditNote
      */
@@ -640,21 +640,21 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param Allocation $value
+     * @param  Allocation  $value
      *
      * @return CreditNote
      */
     public function addAllocation(Allocation $value)
     {
         $this->propertyUpdated('Allocations', $value);
-        if (! isset($this->_data['Allocations'])) {
+        if (!isset($this->_data['Allocations'])) {
             $this->_data['Allocations'] = new Remote\Collection();
         }
         $this->_data['Allocations'][] = $value;
 
         return $this;
     }
-    
+
     /**
      * @return float
      */
@@ -672,7 +672,7 @@ class CreditNote extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return CreditNote
      */
@@ -693,9 +693,9 @@ class CreditNote extends Remote\Model
     }
 
     /**
+     * @param $value
      * @deprecated - this is a read only property and this method will be removed in future versions
      *
-     * @param $value
      */
     public function setHasAttachment($value)
     {

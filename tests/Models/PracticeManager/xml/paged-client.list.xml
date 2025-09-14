@@ -1,0 +1,67 @@
+<Response api-method="PagedList">
+    <Status>OK</Status>
+    <Clients>
+        <Client>
+            <UUID>2eb6ae63-31b4-49b5-b1c5-2b8ced76c33f</UUID>
+            <Name>Test Company</Name>
+            <Email>test@test.com</Email>
+            <Address/>
+            <City/>
+            <Region/>
+            <PostCode/>
+            <Country/>
+            <PostalAddress/>
+            <PostalCity/>
+            <PostalRegion/>
+            <PostalPostCode/>
+            <PostalCountry/>
+            <Phone>0411234567</Phone>
+            <Fax/>
+            <Website/>
+            <ReferralSource/>
+            <ExportCode>1031</ExportCode>
+            <IsProspect>No</IsProspect>
+            <IsArchived>No</IsArchived>
+            <IsDeleted>No</IsDeleted>
+            <WebUrl>https://practicemanager.xero.com/Client/1111111/Detail</WebUrl>
+        </Client>
+        <Client>
+            <UUID>f02f4272-f7c9-4532-aad7-edf1b7808a70</UUID>
+            <Name>Test Pty Ltd</Name>
+            <Email>test@test.com</Email>
+            <Address>52 Smith St</Address>
+            <City>Melbourne</City>
+            <Region>VIC</Region>
+            <PostCode>3000</PostCode>
+            <Country/>
+            <PostalAddress>PO Box 45</PostalAddress>
+            <PostalCity>Melbourne</PostalCity>
+            <PostalRegion>VIC</PostalRegion>
+            <PostalPostCode>3000</PostalPostCode>
+            <PostalCountry/>
+            <Phone/>
+            <Fax/>
+            <Website/>
+            <ReferralSource/>
+            <ExportCode>1006</ExportCode>
+            <IsProspect>No</IsProspect>
+            <IsArchived>No</IsArchived>
+            <IsDeleted>No</IsDeleted>
+            <AccountManager>
+                <UUID>79d08528-a4ff-476b-bcba-769d114724a1</UUID>
+                <Name>Homer Simpson</Name>
+            </AccountManager>
+            <JobManager>
+                <UUID>69dfc134-5556-4ea5-8b38-1e3d4e9ad035</UUID>
+                <Name>Lee Johnson</Name>
+            </JobManager>
+            <WebUrl>https://practicemanager.xero.com/Client/14049508/Detail</WebUrl>
+        </Client>
+    </Clients>
+    <Pagination>
+        <Links>
+            <First>https://api.xero.com/practicemanager/3.1/client.api/paged-list?pageSize=2</First>
+            <Next>https://api.xero.com/practicemanager/3.1/client.api/paged-list?pageToken=Pb5pi6pTp2muZDf-qhr3pDW6b5C2UqpzqmVS56sQ_a0_0WqKt1enca9o&amp;pageSize=2</Next>
+        </Links>
+    </Pagination>
+</Response>

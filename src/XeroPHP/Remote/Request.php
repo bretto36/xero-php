@@ -2,10 +2,10 @@
 
 namespace XeroPHP\Remote;
 
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request as PsrRequest;
 use GuzzleHttp\Psr7\Uri;
 use XeroPHP\Application;
-use XeroPHP\Remote\Exception\RateLimitExceededException;
 
 class Request
 {
@@ -50,7 +50,7 @@ class Request
     private $body;
 
     /**
-     * @var \XeroPHP\Remote\Response;
+     * @var Response;
      */
     private $response;
 
@@ -102,6 +102,7 @@ class Request
      * @throws Exception\RateLimitExceededException
      * @throws Exception\ReportPermissionMissingException
      * @throws Exception\UnauthorizedException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function send()
     {
@@ -111,7 +112,7 @@ class Request
 
         try {
             $guzzleResponse = $this->app->getTransport()->send($request);
-        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+        } catch (BadResponseException $e) {
             $guzzleResponse = $e->getResponse();
         }
         
@@ -169,7 +170,7 @@ class Request
     }
 
     /**
-     * @return \XeroPHP\Remote\Response|null
+     * @return Response|null
      */
     public function getResponse()
     {

@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PayrollUS;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 
 class PayRun extends Remote\Model
@@ -15,7 +16,7 @@ class PayRun extends Remote\Model
     /**
      * Pay run period end date. Needed if it is an unscheduled pay run.
      *
-     * @property \DateTimeInterface PayRunPeriodEndDate
+     * @property DateTimeInterface PayRunPeriodEndDate
      */
 
     /**
@@ -33,13 +34,13 @@ class PayRun extends Remote\Model
     /**
      * Period Start Date for the PayRun.
      *
-     * @property \DateTimeInterface PayRunPeriodStartDate
+     * @property DateTimeInterface PayRunPeriodStartDate
      */
 
     /**
      * Payment Date for the PayRun.
      *
-     * @property \DateTimeInterface PaymentDate
+     * @property DateTimeInterface PaymentDate
      */
 
     /**
@@ -69,7 +70,7 @@ class PayRun extends Remote\Model
     /**
      * The update date for the PayRun.
      *
-     * @property \DateTimeInterface UpdateDateUTC
+     * @property DateTimeInterface UpdateDateUTC
      */
 
     /**
@@ -184,7 +185,7 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPayRunPeriodEndDate()
     {
@@ -192,11 +193,11 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return PayRun
      */
-    public function setPayRunPeriodEndDate(\DateTimeInterface $value)
+    public function setPayRunPeriodEndDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('PayRunPeriodEndDate', $value);
         $this->_data['PayRunPeriodEndDate'] = $value;
@@ -247,7 +248,7 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPayRunPeriodStartDate()
     {
@@ -255,7 +256,7 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPaymentDate()
     {
@@ -295,7 +296,7 @@ class PayRun extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdateDateUTC()
     {

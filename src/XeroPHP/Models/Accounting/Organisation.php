@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Models\Accounting\Organisation\PaymentTerm;
 use XeroPHP\Models\Accounting\Organisation\ExternalLink;
@@ -138,7 +139,7 @@ class Organisation extends Remote\Model
     /**
      * Timestamp when the organisation was created in Xero.
      *
-     * @property \DateTimeInterface CreatedDateUTC
+     * @property DateTimeInterface CreatedDateUTC
      */
 
     /**
@@ -790,7 +791,7 @@ class Organisation extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getCreatedDateUTC()
     {
@@ -798,11 +799,11 @@ class Organisation extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Organisation
      */
-    public function setCreatedDateUTC(\DateTimeInterface $value)
+    public function setCreatedDateUTC(DateTimeInterface $value)
     {
         $this->propertyUpdated('CreatedDateUTC', $value);
         $this->_data['CreatedDateUTC'] = $value;

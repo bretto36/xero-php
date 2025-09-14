@@ -16,7 +16,7 @@ class RateLimitExceededException extends Exception
 
     public static function createFromHeaders($headers)
     {
-        $headers = array_change_key_case($headers, CASE_LOWER);
+        $headers = array_change_key_case($headers);
 
         $problem = isset($headers['x-rate-limit-problem']) ? current($headers['x-rate-limit-problem']) : null;
         $retryAfter = isset($headers['retry-after']) ? current($headers['retry-after']) : null;

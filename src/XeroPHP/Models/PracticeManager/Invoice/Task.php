@@ -4,56 +4,47 @@ namespace XeroPHP\Models\PracticeManager\Invoice;
 
 use XeroPHP\Remote;
 
+/**
+ * @property int ID
+ * @property string Name
+ * @property string Description
+ * @property float Minutes
+ * @property float BillableRate
+ * @property string Billable
+ * @property float Amount
+ * @property float AmountTax
+ * @property float AmountIncludingTax
+ */
 class Task extends Remote\Model
 {
     /**
-     * @property int ID
-     * @property string Name
-     * @property string Description
-     * @property float Minutes
-     * @property float BillableRate
-     * @property string Billable
-     * @property float Amount
-     * @property float AmountTax
-     * @property float AmountIncludingTax
-     */
-
-    /**
      * Get the resource uri of the class (Tasks) etc.
-     *
-     * @return string
      */
-    public static function getResourceURI()
+    public static function getResourceURI(): string
     {
         return '';
     }
 
     /**
      * Get the root node name.  Just the unqualified classname.
-     *
-     * @return string
      */
-    public static function getRootNodeName()
+    public static function getRootNodeName(): string
     {
         return 'Task';
     }
 
     /**
      * Get the guid property.
-     *
-     * @return string
      */
-    public static function getGUIDProperty()
+    public static function getGUIDProperty(): string
     {
         return '';
     }
 
     /**
      * Get the stem of the API (core.xro) etc.
-     *
-     * @return string|null
      */
-    public static function getAPIStem()
+    public static function getAPIStem(): ?string
     {
         return Remote\URL::API_PRACTICE_MANAGER;
     }
@@ -61,10 +52,9 @@ class Task extends Remote\Model
     /**
      * Get the supported methods.
      */
-    public static function getSupportedMethods()
+    public static function getSupportedMethods(): array
     {
-        return [
-        ];
+        return [];
     }
 
     /**
@@ -74,10 +64,8 @@ class Task extends Remote\Model
      *  [2] - PHP type
      *  [3] - Is an Array
      *  [4] - Saves directly.
-     *
-     * @return array
      */
-    public static function getProperties()
+    public static function getProperties(): array
     {
         return [
             'ID'                 => [false, self::PROPERTY_TYPE_INT, null, false, false],
@@ -92,7 +80,7 @@ class Task extends Remote\Model
         ];
     }
 
-    public static function isPageable()
+    public static function isPageable(): bool
     {
         return false;
     }
@@ -106,7 +94,7 @@ class Task extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -127,7 +115,7 @@ class Task extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -148,7 +136,7 @@ class Task extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -169,7 +157,7 @@ class Task extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -190,7 +178,7 @@ class Task extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -211,7 +199,7 @@ class Task extends Remote\Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      *
      * @return self
      */
@@ -232,7 +220,7 @@ class Task extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -253,7 +241,7 @@ class Task extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */
@@ -274,7 +262,7 @@ class Task extends Remote\Model
     }
 
     /**
-     * @param float $value
+     * @param  float  $value
      *
      * @return self
      */

@@ -2,44 +2,40 @@
 
 namespace XeroPHP\Tests;
 
+use PHPUnit\Framework\TestCase;
 use XeroPHP\Application;
-use XeroPHP\Application\PrivateApplication;
 use XeroPHP\Webhook;
 use XeroPHP\Webhook\Event;
 
-class WebhookTest extends \PHPUnit_Framework_TestCase
+class WebhookTest extends TestCase
 {
     /**
      * @var Application
      */
     private $application;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->application = new Application('token', 'tenantId');
         $this->application->setConfig([
             'webhook' => [
                 'signing_key' => 'test_key',
-            ]
+            ],
         ]);
     }
 
-    /**
-     * @expectedException \XeroPHP\Exception
-     */
     public function testMalformedPayload()
     {
-        $payload = 'not valid json';
-        $webhook = new Webhook($this->application, $payload);
+        $this->expectException(\XeroPHP\Exception::class);
+
+        new Webhook($this->application, 'not valid json');
     }
 
-    /**
-     * @expectedException \XeroPHP\Exception
-     */
     public function testPayloadMissingKeys()
     {
-        $payload = '{}';
-        $webhook = new Webhook($this->application, $payload);
+        $this->expectException(\XeroPHP\Exception::class);
+
+        new Webhook($this->application, '{}');
     }
 
     /**
@@ -106,7 +102,7 @@ class WebhookTest extends \PHPUnit_Framework_TestCase
     public function testDependencyInjection()
     {
         $payload = '{"events":[{"resourceUrl":"https://api.xero.com/api.xro/2.0/Invoices/44aa0707-f718-4f1c-8d53-f2da9ca59533","resourceId":"44aa0707-f718-4f1c-8d53-f2da9ca59533","eventDateUtc":"2018-02-09T09:18:28.917Z","eventType":"UPDATE","eventCategory":"INVOICE","tenantId":"e629a03c-7ffe-4913-bd94-ff2fdb36a702","tenantType":"ORGANISATION"},{"resourceUrl":"https://api.xero.com/api.xro/2.0/Invoices/44aa0707-f718-4f1c-8d53-f2da9ca59533","resourceId":"44aa0707-f718-4f1c-8d53-f2da9ca59533","eventDateUtc":"2018-02-09T09:19:05.06Z","eventType":"UPDATE","eventCategory":"INVOICE","tenantId":"e629a03c-7ffe-4913-bd94-ff2fdb36a702","tenantType":"ORGANISATION"}],"firstEventSequence": 2,"lastEventSequence": 3, "entropy": "GATSEZXWIBPBRNQOTMOH"}';
-        $mock = $this->getMockBuilder(Event::class)->disableOriginalConstructor()->getMock();
+        $mock    = $this->getMockBuilder(Event::class)->disableOriginalConstructor()->getMock();
 
         $webhook = new Webhook($this->application, $payload, $mock);
         foreach ($webhook->getEvents() as $evt) {

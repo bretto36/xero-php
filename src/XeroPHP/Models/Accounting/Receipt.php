@@ -2,10 +2,10 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\HistoryTrait;
 use XeroPHP\Traits\AttachmentTrait;
-use XeroPHP\Models\Accounting\LineItem;
 
 class Receipt extends Remote\Model
 {
@@ -15,7 +15,7 @@ class Receipt extends Remote\Model
     /**
      * Date of receipt – YYYY-MM-DD.
      *
-     * @property \DateTimeInterface Date
+     * @property DateTimeInterface Date
      */
 
     /**
@@ -87,7 +87,7 @@ class Receipt extends Remote\Model
     /**
      * Last modified date UTC format.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
 
     /**
@@ -198,7 +198,7 @@ class Receipt extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -206,11 +206,11 @@ class Receipt extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Receipt
      */
-    public function setDate(\DateTimeInterface $value)
+    public function setDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('Date', $value);
         $this->_data['Date'] = $value;
@@ -435,7 +435,7 @@ class Receipt extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {

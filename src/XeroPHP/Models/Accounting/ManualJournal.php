@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\AttachmentTrait;
 use XeroPHP\Models\Accounting\ManualJournal\JournalLine;
@@ -33,7 +34,7 @@ class ManualJournal extends Remote\Model
     /**
      * Date journal was posted – YYYY-MM-DD.
      *
-     * @property \DateTimeInterface Date
+     * @property DateTimeInterface Date
      */
 
     /**
@@ -69,7 +70,7 @@ class ManualJournal extends Remote\Model
     /**
      * Last modified date UTC format.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
     const MANUAL_JOURNAL_STATUS_DRAFT = 'DRAFT';
 
@@ -229,7 +230,7 @@ class ManualJournal extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -237,11 +238,11 @@ class ManualJournal extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return ManualJournal
      */
-    public function setDate(\DateTimeInterface $value)
+    public function setDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('Date', $value);
         $this->_data['Date'] = $value;
@@ -342,7 +343,7 @@ class ManualJournal extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {

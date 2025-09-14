@@ -1,0 +1,34 @@
+<Response api-method="PagedList">
+    <Status>OK</Status>
+    <Clients>
+        <Client>
+            <UUID>2eb6ae63-31b4-49b5-b1c5-2b8ced76c33f</UUID>
+            <Name>Test Company</Name>
+            <Email>test@test.com</Email>
+            <Address/>
+            <City/>
+            <Region/>
+            <PostCode/>
+            <Country/>
+            <PostalAddress/>
+            <PostalCity/>
+            <PostalRegion/>
+            <PostalPostCode/>
+            <PostalCountry/>
+            <Phone>0411234567</Phone>
+            <Fax/>
+            <Website/>
+            <ReferralSource/>
+            <ExportCode>1031</ExportCode>
+            <IsProspect>No</IsProspect>
+            <IsArchived>No</IsArchived>
+            <IsDeleted>No</IsDeleted>
+            <WebUrl>https://practicemanager.xero.com/Client/1111111/Detail</WebUrl>
+        </Client>
+    </Clients>
+    <Pagination>
+        <Links>
+            <First>https://api.xero.com/practicemanager/3.1/client.api/paged-list?pageSize=2</First>
+        </Links>
+    </Pagination>
+</Response>

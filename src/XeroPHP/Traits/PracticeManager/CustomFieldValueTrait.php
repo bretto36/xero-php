@@ -5,9 +5,8 @@ namespace XeroPHP\Traits\PracticeManager;
 use XeroPHP\Exception;
 use XeroPHP\Models\PracticeManager\CustomFieldValue;
 use XeroPHP\Remote\Collection;
-use XeroPHP\Remote\URL;
 use XeroPHP\Remote\Request;
-use XeroPHP\Models\Accounting\Attachment;
+use XeroPHP\Remote\URL;
 
 trait CustomFieldValueTrait
 {
@@ -32,9 +31,6 @@ trait CustomFieldValueTrait
      */
     public function getCustomFieldValues()
     {
-        /**
-         * @var \XeroPHP\Remote\Model
-         */
         if ($this->hasGUID() === false) {
             throw new Exception(
                 'Custom Field Values are only available to objects that exist remotely.'
@@ -46,7 +42,7 @@ trait CustomFieldValueTrait
             $this->getGUID()
         );
 
-        $url = new URL($this->_application, $uri, URL::API_PRACTICE_MANAGER);
+        $url     = new URL($this->_application, $uri, URL::API_PRACTICE_MANAGER);
         $request = new Request($this->_application, $url, Request::METHOD_GET);
         $request->send();
 

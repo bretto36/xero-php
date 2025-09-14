@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\HistoryTrait;
 use XeroPHP\Traits\AttachmentTrait;
@@ -32,7 +33,7 @@ class BankTransfer extends Remote\Model
     /**
      * The date of the Transfer YYYY-MM-DD.
      *
-     * @property \DateTimeInterface Date
+     * @property DateTimeInterface Date
      */
 
     /**
@@ -86,7 +87,7 @@ class BankTransfer extends Remote\Model
     /**
      * UTC timestamp of creation date of bank transfer.
      *
-     * @property \DateTimeInterface CreatedDateUTC
+     * @property DateTimeInterface CreatedDateUTC
      */
 
     /**
@@ -238,7 +239,7 @@ class BankTransfer extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -246,11 +247,11 @@ class BankTransfer extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return BankTransfer
      */
-    public function setDate(\DateTimeInterface $value)
+    public function setDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('Date', $value);
         $this->_data['Date'] = $value;
@@ -290,7 +291,7 @@ class BankTransfer extends Remote\Model
     /**
      * @param string $value
      *
-     * @return Invoice
+     * @return self
      */
     public function setReference($value)
     {
@@ -335,7 +336,7 @@ class BankTransfer extends Remote\Model
     /**
      * @param bool $value
      *
-     * @return BankTransaction
+     * @return self
      */
     public function setFromIsReconciled($value)
     {
@@ -356,7 +357,7 @@ class BankTransfer extends Remote\Model
     /**
      * @param bool $value
      *
-     * @return BankTransaction
+     * @return self
      */
     public function setToIsReconciled($value)
     {
@@ -375,7 +376,7 @@ class BankTransfer extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getCreatedDateUTC()
     {

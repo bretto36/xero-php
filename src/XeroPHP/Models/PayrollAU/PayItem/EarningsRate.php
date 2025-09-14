@@ -567,7 +567,7 @@ class EarningsRate extends Remote\Model
     /**
      * @param string $value
      *
-     * @return EarningRate
+     * @return self
      */
     public function setEmploymentTerminationPaymentType($value)
     {
@@ -588,7 +588,7 @@ class EarningsRate extends Remote\Model
     /**
      * @param string $value
      *
-     * @return EarningRate
+     * @return self
      */
     public function setAllowanceCategory($value)
     {

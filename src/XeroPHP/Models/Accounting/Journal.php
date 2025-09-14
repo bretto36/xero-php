@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Models\Accounting\Journal\JournalLine;
 
@@ -16,7 +17,7 @@ class Journal extends Remote\Model
     /**
      * Date the journal was posted.
      *
-     * @property \DateTimeInterface JournalDate
+     * @property DateTimeInterface JournalDate
      */
 
     /**
@@ -28,7 +29,7 @@ class Journal extends Remote\Model
     /**
      * Created date UTC format.
      *
-     * @property \DateTimeInterface CreatedDateUTC
+     * @property DateTimeInterface CreatedDateUTC
      */
 
     /**
@@ -203,7 +204,7 @@ class Journal extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getJournalDate()
     {
@@ -211,11 +212,11 @@ class Journal extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Journal
      */
-    public function setJournalDate(\DateTimeInterface $value)
+    public function setJournalDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('JournalDate', $value);
         $this->_data['JournalDate'] = $value;
@@ -245,7 +246,7 @@ class Journal extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getCreatedDateUTC()
     {
@@ -253,11 +254,11 @@ class Journal extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Journal
      */
-    public function setCreatedDateUTC(\DateTimeInterface $value)
+    public function setCreatedDateUTC(DateTimeInterface $value)
     {
         $this->propertyUpdated('CreatedDateUTC', $value);
         $this->_data['CreatedDateUTC'] = $value;

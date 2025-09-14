@@ -2,10 +2,10 @@
 
 namespace XeroPHP\Models\Accounting;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Traits\HistoryTrait;
 use XeroPHP\Traits\AttachmentTrait;
-use XeroPHP\Models\Accounting\LineItem;
 use XeroPHP\Models\Accounting\Overpayment\Allocation;
 
 class Overpayment extends Remote\Model
@@ -36,7 +36,7 @@ class Overpayment extends Remote\Model
     /**
      * The date the overpayment is created YYYY-MM-DD.
      *
-     * @property \DateTimeInterface Date
+     * @property DateTimeInterface Date
      */
 
     /**
@@ -78,7 +78,7 @@ class Overpayment extends Remote\Model
     /**
      * UTC timestamp of last update to the overpayment.
      *
-     * @property \DateTimeInterface UpdatedDateUTC
+     * @property DateTimeInterface UpdatedDateUTC
      */
 
     /**
@@ -301,7 +301,7 @@ class Overpayment extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDate()
     {
@@ -309,11 +309,11 @@ class Overpayment extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Overpayment
      */
-    public function setDate(\DateTimeInterface $value)
+    public function setDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('Date', $value);
         $this->_data['Date'] = $value;
@@ -451,7 +451,7 @@ class Overpayment extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getUpdatedDateUTC()
     {
@@ -459,11 +459,11 @@ class Overpayment extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return Overpayment
      */
-    public function setUpdatedDateUTC(\DateTimeInterface $value)
+    public function setUpdatedDateUTC(DateTimeInterface $value)
     {
         $this->propertyUpdated('UpdatedDateUTC', $value);
         $this->_data['UpdatedDateUTC'] = $value;

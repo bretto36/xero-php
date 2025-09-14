@@ -2,6 +2,7 @@
 
 namespace XeroPHP\Models\PayrollAU\Employee;
 
+use DateTimeInterface;
 use XeroPHP\Remote;
 use XeroPHP\Models\PayrollAU\Payslip\EarningsLine;
 use XeroPHP\Models\PayrollAU\Payslip\DeductionLine;
@@ -12,7 +13,7 @@ class OpeningBalance extends Remote\Model
     /**
      * Opening Balance Date. (YYYY-MM-DD).
      *
-     * @property \DateTimeInterface OpeningBalanceDate
+     * @property DateTimeInterface OpeningBalanceDate
      */
 
     /**
@@ -185,7 +186,7 @@ class OpeningBalance extends Remote\Model
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getOpeningBalanceDate()
     {
@@ -193,11 +194,11 @@ class OpeningBalance extends Remote\Model
     }
 
     /**
-     * @param \DateTimeInterface $value
+     * @param DateTimeInterface $value
      *
      * @return OpeningBalance
      */
-    public function setOpeningBalanceDate(\DateTimeInterface $value)
+    public function setOpeningBalanceDate(DateTimeInterface $value)
     {
         $this->propertyUpdated('OpeningBalanceDate', $value);
         $this->_data['OpeningBalanceDate'] = $value;
